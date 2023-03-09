@@ -17,7 +17,7 @@ public class Project {
 
     public Project(String name, String description, Category[] categories, User author) {
         this.name = name;
-        //this.description = description;
+        this.description = description;
         this.categories = new Category[5];
         for (int i = 0; i < 5; i++) {
             if(i >= categories.length)

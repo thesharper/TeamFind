@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.teamfind.databinding.ActivityMainBinding;
 
@@ -16,41 +17,45 @@ import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private static int[] containers;
+    //private static int[] containers;
     //private static List<Project> tempProjectsFrags;
     private static List<Project> tempProjectsFrags = new ArrayList<>();
-    /*static {
-        tempProjectsFrags.add(new Project("a", "asdfg",
-                new Category[]{CategoryList.list[0]}, new User("dsfs")));
-        tempProjectsFrags.add(new Project("adsfg", "asdfg",
-                new Category[]{CategoryList.list[1]}, new User("dsfs")));
-        tempProjectsFrags.add(new Project("a", "asdfg",
-                new Category[]{CategoryList.list[0], CategoryList.list[5]}, new User("dsfawers")));
-    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         init();
-        ProjectAdapter pa = new ProjectAdapter(this, tempProjectsFrags);
+        ProjectAdapter pa = new ProjectAdapter(this, tempProjectsFrags, new ProjectAdapter.OnProjectClickListener() {
+            @Override
+            public void onProjectClick(ProjectAdapter.ViewHolder holder) {
+                Toast.makeText(getApplicationContext(), "Был выбран пункт ",
+                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
+                intent.putExtra("name", holder.name);
+                intent.putExtra("description", holder.description);
+                intent.putExtra("author", holder.author);
+                intent.putExtra("date", holder.date);
+
+                intent.putExtra("cat1s", holder.cat1.name);
+                intent.putExtra("cat1d", holder.cat1.drawable_id);
+                intent.putExtra("cat2s", holder.cat2.name);
+                intent.putExtra("cat2d", holder.cat2.drawable_id);
+                intent.putExtra("cat3s", holder.cat3.name);
+                intent.putExtra("cat3d", holder.cat3.drawable_id);
+                intent.putExtra("cat4s", holder.cat4.name);
+                intent.putExtra("cat4d", holder.cat4.drawable_id);
+                intent.putExtra("cat5s", holder.cat5.name);
+                intent.putExtra("cat5d", holder.cat5.drawable_id);
+                startActivity(intent);
+            }
+        });
         binding.list.setAdapter(pa);
     }
-   /* private void fragmentInit() {
 
-        ProjectsLoader pl = new ProjectsLoader();
-        List<Project> projects = pl.load();
-
-        for (int i = 0; i < containers.length; i++) {
-            getSupportFragmentManager().beginTransaction().addToBackStack(null).add(containers[i],
-                    projects.get(i).fragment, String.valueOf(false)).commit();
-        }
-        binding.rootContainer1.setOnClickListener(view -> projects.get(0).fragment.click());
-        binding.rootContainer2.setOnClickListener(view -> projects.get(0).fragment.click());
-
-    }*/
     void init(){
-        tempProjectsFrags.add(new Project("a", "asdfg",
+        tempProjectsFrags.add(new Project("Паренная репа", "asdfg",
                 new Category[]{CategoryList.list[0]}, new User("dsfs")));
         tempProjectsFrags.add(new Project("adsfg", "asdfg",
                 new Category[]{CategoryList.list[1]}, new User("dsfs")));

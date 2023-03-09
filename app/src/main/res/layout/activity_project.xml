@@ -9,20 +9,72 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"/>
+        android:id="@+id/name"
+        android:textSize="28dp"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/description"/>
+        android:id="@+id/description"
+        android:textSize="18dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/author"
+        android:textSize="18dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:textSize="24dp"
+        android:textColor="@color/black"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/waef"
+            android:text=""
+            android:textSize="18dp"
+            android:id="@+id/cat1"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/waef"
+            android:text=""
+            android:textSize="18dp"
+            android:id="@+id/cat2"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/waef"
+            android:text=""
+            android:textSize="18dp"
+            android:id="@+id/cat3"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/waef"
+            android:text=""
+            android:textSize="18dp"
+            android:id="@+id/cat4"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/waef"
+            android:text=""
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:id="@+id/cat5"
+            android:layout_margin="4dp"/>
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
