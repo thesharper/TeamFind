@@ -6,6 +6,7 @@ public class User {
     public String name;
     public Category[] categories;
     private ZonedDateTime zt;
+    public Project[] projects;
 
     public User(String name) {
         this.name = name;
