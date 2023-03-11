@@ -49,6 +49,6 @@ public class Project {
     }
 
     public void save(){
-        dbr.push().setValue(this.toString());
+        dbr.push().setValue(new StringProject(this));
     }
 }

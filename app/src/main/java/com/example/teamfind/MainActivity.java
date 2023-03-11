@@ -61,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
     void init(){
         dbr = FirebaseDatabase.getInstance().getReference();
         tempProjectsFrags.add(new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
-                new Category[]{CategoryList.list[0]}, new User("Кривецкий")));
+                new Category[]{CategoryList.list[0]}, new User("ванёк", "t004")));
 
         tempProjectsFrags.add(new Project("adsfg", "asdfg",
-                new Category[]{CategoryList.list[1]}, new User("dsfs")));
+                new Category[]{CategoryList.list[1]}, new User("dsfs", "t003")));
         tempProjectsFrags.add(new Project("a", "asdfg",
-                new Category[]{CategoryList.list[0], CategoryList.list[5]}, new User("dsfawers")));
+                new Category[]{CategoryList.list[0], CategoryList.list[5]}, new User("dsfawers", "t002")));
         Project p = new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
-                new Category[]{CategoryList.list[0]}, new User("Кривецкий"));
-        p.save();
+                new Category[]{CategoryList.list[0]}, new User("Кривецкий", "a001"));
+        //p.save();
     }
 }
