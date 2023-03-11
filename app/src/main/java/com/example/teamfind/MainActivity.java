@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.teamfind.databinding.ActivityMainBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     //private static int[] containers;
     //private static List<Project> tempProjectsFrags;
     private static List<Project> tempProjectsFrags = new ArrayList<>();
+    private DatabaseReference dbr;
+    private String USER_KEY = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void init(){
-        tempProjectsFrags.add(new Project("Паренная репа", "asdfg",
-                new Category[]{CategoryList.list[0]}, new User("dsfs")));
+        dbr = FirebaseDatabase.getInstance().getReference();
+        tempProjectsFrags.add(new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
+                new Category[]{CategoryList.list[0]}, new User("Кривецкий")));
+
         tempProjectsFrags.add(new Project("adsfg", "asdfg",
                 new Category[]{CategoryList.list[1]}, new User("dsfs")));
         tempProjectsFrags.add(new Project("a", "asdfg",
                 new Category[]{CategoryList.list[0], CategoryList.list[5]}, new User("dsfawers")));
+        Project p = new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
+                new Category[]{CategoryList.list[0]}, new User("Кривецкий"));
+        p.save();
     }
 }

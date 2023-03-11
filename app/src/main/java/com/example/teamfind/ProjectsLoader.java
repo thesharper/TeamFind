@@ -13,6 +13,7 @@ public class ProjectsLoader {
                 new User("Кривецкий ААААААА")));
     }*/
     public static List<Project> load(){
+
         return tempProjects;
     }
 }

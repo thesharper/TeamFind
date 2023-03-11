@@ -4,7 +4,7 @@ public class CategoryList {
     public static Category[] list;
     static{
         list = new Category[38];
-        list[0] = new Category("ИИ и ML", R.drawable.red);
+        list[0] = new Category("ИИ_и_ML", R.drawable.red);
         list[1] = new Category("Android-разработка", R.drawable.greenn);
         list[2] = new Category("IOs разработка", R.drawable.redd);
         list[3] = new Category("Веб-разработка", R.drawable.blue);
