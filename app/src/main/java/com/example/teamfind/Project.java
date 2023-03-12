@@ -16,8 +16,9 @@ public class Project {
     public String date;
     public User author;
     public Category[] categories;
+    public String DBid;
     //public ProjectFragment fragment;
-    private String PROJECT_KEY = "Project";
+    private String PROJECT_KEY = "Projects";
     private DatabaseReference dbr;
     static Category nullCategory = new Category("", 0);
 
@@ -49,6 +50,8 @@ public class Project {
     }
 
     public void save(){
+        String id = dbr.getKey();
+        this.DBid = id;
         dbr.push().setValue(new StringProject(this));
     }
 }
