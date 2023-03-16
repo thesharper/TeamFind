@@ -74,10 +74,7 @@ public class Project {
     public static Project getByString(StringProject sp){
         Category[] cats = new Category[5];
         for (int i = 0; i < 5; i++) {
-            if(sp.categories.get(i) != "")
-                cats[i] = CategoryList.getByName(sp.categories.get(i));
-            else
-                cats[i] = nullCategory;
+            cats[i] = CategoryList.getByName(sp.cats[i]);
         }
         return new Project(sp.name, sp.description, cats, sp.author);
     }

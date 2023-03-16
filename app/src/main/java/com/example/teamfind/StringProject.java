@@ -12,6 +12,7 @@ public class StringProject {
     public String date;
     public String author; //обязательно email!
     public List<String> categories = new ArrayList<>();
+    public String[] cats = new String[5];
     public StringProject(Project p){
         this.name = p.name;
         this.description = p.description;
@@ -19,9 +20,9 @@ public class StringProject {
         this.author = p.author.email;
         for (int i = 0; i < 5; i++) {
             if(p.categories[i].name != null)
-                categories.add(p.categories[i].name);
+                cats[i] = p.categories[i].name;
             else
-                categories.add("");
+                cats[i] = "";
         }
     }
 

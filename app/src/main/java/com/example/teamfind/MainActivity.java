@@ -40,7 +40,27 @@ public class MainActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
                         StringProject p = ds.getValue(StringProject.class);
-                        projects.add(Project.getByString(p));
+
+                        User author = new User();
+
+                        for (DataSnapshot du : snapshot.child("User").getChildren()) { //загрузил авторов на проекты
+                            User user = ds.getValue(User.class);
+                            Log.i("inform", user.email);
+                            if(user != null) {
+                                if (user.email == p.author) {
+                                    author = user;
+                                }
+                            }
+                        }
+
+                        Project project = new Project(p.name, p.description, new Category[]{
+                                CategoryList.getByName(p.cats[0]),
+                                CategoryList.getByName(p.cats[1]),
+                                CategoryList.getByName(p.cats[2]),
+                                CategoryList.getByName(p.cats[3]),
+                                CategoryList.getByName(p.cats[4])}, author);
+
+                        projects.add(project);
                     }
 
                     for (int i = 0; i < projects.size(); i++) {
