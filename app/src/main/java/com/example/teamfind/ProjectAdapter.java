@@ -74,7 +74,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         public void bind(Project project){
             name = project.name;
             description = project.description;
-            author = project.author.name;
+            if(project.author != null)
+                author = project.author.name;
+            else
+                author = "Неизвестный";
             date = project.date;
 
             cat1 = project.categories[0];
@@ -84,8 +87,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             cat5 = project.categories[4];
 
             itemBinding.name.setText(project.name);
-            itemBinding.author.setText(project.author.name);
-            itemBinding.date.setText(project.date.toString());
+            if(project.author != null)
+                itemBinding.author.setText(project.author.name);
+            else
+                itemBinding.author.setText("Неизвестный");
+            itemBinding.date.setText(project.date);
 
             itemBinding.cat1.setText(project.categories[0].name);
             itemBinding.cat1.setBackgroundResource(project.categories[0].drawable_id);

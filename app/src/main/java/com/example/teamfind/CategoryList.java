@@ -2,6 +2,7 @@ package com.example.teamfind;
 
 public class CategoryList {
     public static Category[] list;
+    static Category nullCategory = new Category("", 0);
     static{
         list = new Category[38];
         list[0] = new Category("ИИ_и_ML", R.drawable.red);
@@ -43,5 +44,11 @@ public class CategoryList {
         list[36] = new Category("Дизайн", R.drawable.greenn);
         list[37] = new Category("3D-моделирование", R.drawable.green);
 
+    }
+    static Category getByName(String name){
+        for (int i = 0; i < list.length; i++) {
+            if(list[i].name == name) return list[i];
+        }
+        return nullCategory;
     }
 }
