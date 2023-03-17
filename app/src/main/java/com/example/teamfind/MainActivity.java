@@ -41,14 +41,20 @@ public class MainActivity extends AppCompatActivity {
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
                         StringProject p = ds.getValue(StringProject.class);
 
+                        Log.i("author in project", p.author);
+                        //Log.i("categories in project", p.cats[0]);
+
                         User author = new User();
 
-                        for (DataSnapshot du : snapshot.child("User").getChildren()) { //загрузил авторов на проекты
-                            User user = ds.getValue(User.class);
-                            Log.i("inform", user.email);
-                            if(user != null) {
-                                if (user.email == p.author) {
-                                    author = user;
+                        for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
+                            if(snapshot.child("Users").exists()) {
+                                User user = du.getValue(User.class);
+                                Log.i("inform", user.email);
+                                if (user != null) {
+                                    if (user.email.equalsIgnoreCase(p.author)) {
+                                        Log.i("information", user.first_name);
+                                        author = new User(user.first_name, user.second_name, user.id, user.email);
+                                    }
                                 }
                             }
                         }
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         projects.add(project);
                     }
 
-                    for (int i = 0; i < projects.size(); i++) {
+                    /*for (int i = 0; i < projects.size(); i++) {
                         for (DataSnapshot ds : snapshot.child("User").getChildren()) { //загрузил авторов на проекты
                             User user = ds.getValue(User.class);
                             Log.i("inform", user.email);
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         }
-                    }
+                    }*/
 
                     ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
             @Override
@@ -83,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
                 intent.putExtra("name", holder.name);
                 intent.putExtra("description", holder.description);
+                //Log.i("inform", holder.author);
                 intent.putExtra("author", holder.author);
                 intent.putExtra("date", holder.date);
 

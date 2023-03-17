@@ -74,7 +74,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         public void bind(Project project){
             name = project.name;
             description = project.description;
-            if(project.author != null)
+            if(project.author.name != null)
                 author = project.author.name;
             else
                 author = "Неизвестный";
