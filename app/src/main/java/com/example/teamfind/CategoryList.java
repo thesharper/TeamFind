@@ -47,7 +47,7 @@ public class CategoryList {
     }
     static Category getByName(String name){
         for (int i = 0; i < list.length; i++) {
-            if(list[i].name == name) return list[i];
+            if(list[i].name.equalsIgnoreCase(name)) return list[i];
         }
         return nullCategory;
     }

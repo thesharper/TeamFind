@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                         StringProject p = ds.getValue(StringProject.class);
 
                         Log.i("author in project", p.author);
-                        //Log.i("categories in project", p.cats[0]);
+                        Log.i("categories in project", p.categories.get(0));
 
                         User author = new User();
 
@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         Project project = new Project(p.name, p.description, new Category[]{
-                                CategoryList.getByName(p.cats[0]),
-                                CategoryList.getByName(p.cats[1]),
-                                CategoryList.getByName(p.cats[2]),
-                                CategoryList.getByName(p.cats[3]),
-                                CategoryList.getByName(p.cats[4])}, author);
+                                CategoryList.getByName(p.categories.get(0)),
+                                CategoryList.getByName(p.categories.get(1)),
+                                CategoryList.getByName(p.categories.get(2)),
+                                CategoryList.getByName(p.categories.get(3)),
+                                CategoryList.getByName(p.categories.get(4))}, author);
 
                         projects.add(project);
                     }
