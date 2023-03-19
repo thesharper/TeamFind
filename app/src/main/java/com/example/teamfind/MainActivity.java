@@ -49,85 +49,86 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Account current;
+                    //Account current;
                     for (DataSnapshot da : snapshot.child("Accounts").getChildren()) {
                         Account acc = da.getValue(Account.class);
+                        Log.d("account email", acc.email);
+                        Log.d("shared pref email", account.getString("password", "nihuya"));
                         if (acc.password.equalsIgnoreCase(account.getString("password", ""))
                                 && acc.email.equalsIgnoreCase(account.getString("email", ""))) {
 
                             for (DataSnapshot dsu : snapshot.child("Users").getChildren()) {
                                 if (snapshot.child("Users").exists()) {
                                     User cu = dsu.getValue(User.class);
+                                    Log.d("current user email", cu.email);
                                     if (cu.email.equalsIgnoreCase(acc.email)) {
                                         User.thisUser = cu;
                                     }
                                 }
                             }
                         }
-                       /* else{ //не авторизован
-                            Toast.makeText(getApplicationContext(), "Неверные данные!", Toast.LENGTH_SHORT).show();
-                            editor.putBoolean("isAuth", false);
-                            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
-                        }*/
-
-
-                        for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
-                            StringProject p = ds.getValue(StringProject.class);
-
-
-                            User author = new User();
-
-                            for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
-                                if (snapshot.child("Users").exists()) {
-                                    User user = du.getValue(User.class);
-                                    if (user != null) {
-                                        if (user.email.equalsIgnoreCase(p.author)) {
-                                            author = new User(user.first_name, user.second_name, user.id, user.email);
-                                        }
-                                    }
-                                }
-                            }
-
-                            Project project = new Project(p.name, p.description, new Category[]{
-                                    CategoryList.getByName(p.categories.get(0)),
-                                    CategoryList.getByName(p.categories.get(1)),
-                                    CategoryList.getByName(p.categories.get(2)),
-                                    CategoryList.getByName(p.categories.get(3)),
-                                    CategoryList.getByName(p.categories.get(4))}, author);
-
-                            projects.add(project);
-                        }
-                        ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
-                            @Override
-                            public void onProjectClick(ProjectAdapter.ViewHolder holder) {
-                                Toast.makeText(getApplicationContext(), "Был выбран пункт ",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
-                                intent.putExtra("name", holder.name);
-                                intent.putExtra("description", holder.description);
-                                //Log.i("inform", holder.author);
-                                intent.putExtra("author", holder.author);
-                                intent.putExtra("date", holder.date);
-
-                                intent.putExtra("cat1s", holder.cat1.name);
-                                intent.putExtra("cat1d", holder.cat1.drawable_id);
-                                intent.putExtra("cat2s", holder.cat2.name);
-                                intent.putExtra("cat2d", holder.cat2.drawable_id);
-                                intent.putExtra("cat3s", holder.cat3.name);
-                                intent.putExtra("cat3d", holder.cat3.drawable_id);
-                                intent.putExtra("cat4s", holder.cat4.name);
-                                intent.putExtra("cat4d", holder.cat4.drawable_id);
-                                intent.putExtra("cat5s", holder.cat5.name);
-                                intent.putExtra("cat5d", holder.cat5.drawable_id);
-                                startActivity(intent);
-                            }
-                        });
-                        binding.list.setAdapter(pa);
+                    }
+                    if(User.thisUser == null){ //не авторизован
+                        Toast.makeText(getApplicationContext(), "Неверные данные!", Toast.LENGTH_SHORT).show();
+                        editor.putBoolean("isAuth", false);
+                        startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
                     }
 
 
+                    for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
+                        StringProject p = ds.getValue(StringProject.class);
+
+
+                        User author = new User();
+
+                        for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
+                            if (snapshot.child("Users").exists()) {
+                                User user = du.getValue(User.class);
+                                if (user != null) {
+                                    if (user.email.equalsIgnoreCase(p.author)) {
+                                        author = new User(user.first_name, user.second_name, user.id, user.email);
+                                    }
+                                }
+                            }
+                        }
+                        Project project = new Project(p.name, p.description, new Category[]{
+                                CategoryList.getByName(p.categories.get(0)),
+                                CategoryList.getByName(p.categories.get(1)),
+                                CategoryList.getByName(p.categories.get(2)),
+                                CategoryList.getByName(p.categories.get(3)),
+                                CategoryList.getByName(p.categories.get(4))}, author);
+                        projects.add(project);
+                    }
+                    ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
+                        @Override
+                        public void onProjectClick(ProjectAdapter.ViewHolder holder) {
+                            Toast.makeText(getApplicationContext(), "Был выбран пункт ",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
+                            intent.putExtra("name", holder.name);
+                            intent.putExtra("description", holder.description);
+                            //Log.i("inform", holder.author);
+                            intent.putExtra("author", holder.author);
+                            intent.putExtra("date", holder.date);
+                            intent.putExtra("cat1s", holder.cat1.name);
+                            intent.putExtra("cat1d", holder.cat1.drawable_id);
+                            intent.putExtra("cat2s", holder.cat2.name);
+                            intent.putExtra("cat2d", holder.cat2.drawable_id);
+                            intent.putExtra("cat3s", holder.cat3.name);
+                            intent.putExtra("cat3d", holder.cat3.drawable_id);
+                            intent.putExtra("cat4s", holder.cat4.name);
+                            intent.putExtra("cat4d", holder.cat4.drawable_id);
+                            intent.putExtra("cat5s", holder.cat5.name);
+                            intent.putExtra("cat5d", holder.cat5.drawable_id);
+                            startActivity(intent);
+                        }
+                    });
+                    binding.list.setAdapter(pa);
                 }
+
+
             }
+
 
 
 
