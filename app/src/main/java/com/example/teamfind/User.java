@@ -21,6 +21,7 @@ public class User {
     public String id;
     //public Project[] projects;
     public String email;
+    public static User thisUser;
 
     public User(String first_name, String second_name, String id, String email) {
         this.first_name = first_name;

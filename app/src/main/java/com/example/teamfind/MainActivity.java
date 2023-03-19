@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,85 +31,106 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference dbr;
     private String USER_KEY = "User";
     private List<Project> projects = new ArrayList<>();
+    public static SharedPreferences account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        account = getSharedPreferences("Account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = account.edit();
+        editor.apply();
         dbr = FirebaseDatabase.getInstance().getReference();
+        //Account me = new Account("sreniy06@gmail.com", "imcool123");
+        //dbr.push().setValue(me);
+
+        if(!account.getBoolean("isAuth", false))
+            startActivity(new Intent(this, AuthorizationActivity.class));
+
         ValueEventListener v = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
-                        StringProject p = ds.getValue(StringProject.class);
+                if (snapshot.exists()) {
+                    Account current;
+                    for (DataSnapshot da : snapshot.child("Accounts").getChildren()) {
+                        Account acc = da.getValue(Account.class);
+                        if (acc.password.equalsIgnoreCase(account.getString("password", ""))
+                                && acc.email.equalsIgnoreCase(account.getString("email", ""))) {
 
-                        Log.i("author in project", p.author);
-                        Log.i("categories in project", p.categories.get(0));
-
-                        User author = new User();
-
-                        for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
-                            if(snapshot.child("Users").exists()) {
-                                User user = du.getValue(User.class);
-                                Log.i("inform", user.email);
-                                if (user != null) {
-                                    if (user.email.equalsIgnoreCase(p.author)) {
-                                        Log.i("information", user.first_name);
-                                        author = new User(user.first_name, user.second_name, user.id, user.email);
+                            for (DataSnapshot dsu : snapshot.child("Users").getChildren()) {
+                                if (snapshot.child("Users").exists()) {
+                                    User cu = dsu.getValue(User.class);
+                                    if (cu.email.equalsIgnoreCase(acc.email)) {
+                                        User.thisUser = cu;
                                     }
                                 }
                             }
                         }
+                       /* else{ //не авторизован
+                            Toast.makeText(getApplicationContext(), "Неверные данные!", Toast.LENGTH_SHORT).show();
+                            editor.putBoolean("isAuth", false);
+                            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+                        }*/
 
-                        Project project = new Project(p.name, p.description, new Category[]{
-                                CategoryList.getByName(p.categories.get(0)),
-                                CategoryList.getByName(p.categories.get(1)),
-                                CategoryList.getByName(p.categories.get(2)),
-                                CategoryList.getByName(p.categories.get(3)),
-                                CategoryList.getByName(p.categories.get(4))}, author);
 
-                        projects.add(project);
-                    }
+                        for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
+                            StringProject p = ds.getValue(StringProject.class);
 
-                    /*for (int i = 0; i < projects.size(); i++) {
-                        for (DataSnapshot ds : snapshot.child("User").getChildren()) { //загрузил авторов на проекты
-                            User user = ds.getValue(User.class);
-                            Log.i("inform", user.email);
-                            if(user != null) {
-                                if (user.email == projects.get(i).author_id) {
-                                    projects.get(i).author = user;
+
+                            User author = new User();
+
+                            for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
+                                if (snapshot.child("Users").exists()) {
+                                    User user = du.getValue(User.class);
+                                    if (user != null) {
+                                        if (user.email.equalsIgnoreCase(p.author)) {
+                                            author = new User(user.first_name, user.second_name, user.id, user.email);
+                                        }
+                                    }
                                 }
                             }
+
+                            Project project = new Project(p.name, p.description, new Category[]{
+                                    CategoryList.getByName(p.categories.get(0)),
+                                    CategoryList.getByName(p.categories.get(1)),
+                                    CategoryList.getByName(p.categories.get(2)),
+                                    CategoryList.getByName(p.categories.get(3)),
+                                    CategoryList.getByName(p.categories.get(4))}, author);
+
+                            projects.add(project);
                         }
-                    }*/
+                        ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
+                            @Override
+                            public void onProjectClick(ProjectAdapter.ViewHolder holder) {
+                                Toast.makeText(getApplicationContext(), "Был выбран пункт ",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
+                                intent.putExtra("name", holder.name);
+                                intent.putExtra("description", holder.description);
+                                //Log.i("inform", holder.author);
+                                intent.putExtra("author", holder.author);
+                                intent.putExtra("date", holder.date);
 
-                    ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
-            @Override
-            public void onProjectClick(ProjectAdapter.ViewHolder holder) {
-                Toast.makeText(getApplicationContext(), "Был выбран пункт ",
-                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
-                intent.putExtra("name", holder.name);
-                intent.putExtra("description", holder.description);
-                //Log.i("inform", holder.author);
-                intent.putExtra("author", holder.author);
-                intent.putExtra("date", holder.date);
+                                intent.putExtra("cat1s", holder.cat1.name);
+                                intent.putExtra("cat1d", holder.cat1.drawable_id);
+                                intent.putExtra("cat2s", holder.cat2.name);
+                                intent.putExtra("cat2d", holder.cat2.drawable_id);
+                                intent.putExtra("cat3s", holder.cat3.name);
+                                intent.putExtra("cat3d", holder.cat3.drawable_id);
+                                intent.putExtra("cat4s", holder.cat4.name);
+                                intent.putExtra("cat4d", holder.cat4.drawable_id);
+                                intent.putExtra("cat5s", holder.cat5.name);
+                                intent.putExtra("cat5d", holder.cat5.drawable_id);
+                                startActivity(intent);
+                            }
+                        });
+                        binding.list.setAdapter(pa);
+                    }
 
-                intent.putExtra("cat1s", holder.cat1.name);
-                intent.putExtra("cat1d", holder.cat1.drawable_id);
-                intent.putExtra("cat2s", holder.cat2.name);
-                intent.putExtra("cat2d", holder.cat2.drawable_id);
-                intent.putExtra("cat3s", holder.cat3.name);
-                intent.putExtra("cat3d", holder.cat3.drawable_id);
-                intent.putExtra("cat4s", holder.cat4.name);
-                intent.putExtra("cat4d", holder.cat4.drawable_id);
-                intent.putExtra("cat5s", holder.cat5.name);
-                intent.putExtra("cat5d", holder.cat5.drawable_id);
-                startActivity(intent);
-            }
-            });
-                    binding.list.setAdapter(pa);
+
                 }
             }
+
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
