@@ -56,6 +56,24 @@ public class Project {
 
     }
 
+    public Project(String name, String description, Category[] categories, User author, String date) {
+        dbr = FirebaseDatabase.getInstance().getReference(PROJECT_KEY);
+        this.name = name;
+        this.description = description;
+        this.categories = new Category[5];
+        for (int i = 0; i < 5; i++) {
+            if(i >= categories.length)
+                this.categories[i] = nullCategory;
+            else
+                this.categories[i] = categories[i];
+        }
+        this.date = date;
+        this.author = author;
+        //fragment = new ProjectFragment(this);
+
+    }
+
+
    /* @Override
     public String toString() {
         String res = "P [" + name + "] [" + description + "] [" + date + "] [" + author.id + "] [";

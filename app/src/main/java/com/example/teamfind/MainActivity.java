@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 CategoryList.getByName(p.categories.get(1)),
                                 CategoryList.getByName(p.categories.get(2)),
                                 CategoryList.getByName(p.categories.get(3)),
-                                CategoryList.getByName(p.categories.get(4))}, author);
+                                CategoryList.getByName(p.categories.get(4))}, author, p.date);
                         projects.add(project);
                     }
                     ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {

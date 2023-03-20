@@ -54,7 +54,7 @@ public class MyProjectsActivity extends AppCompatActivity {
                                     CategoryList.getByName(project.categories.get(1)),
                                     CategoryList.getByName(project.categories.get(2)),
                                     CategoryList.getByName(project.categories.get(3)),
-                                    CategoryList.getByName(project.categories.get(4))}, us);
+                                    CategoryList.getByName(project.categories.get(4))}, us, project.date);
                             projects.add(p);
                         }
                     }
