@@ -152,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
         });
 
+        binding.newProject.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+        });
+
        // dbr = FirebaseDatabase.getInstance().getReference("Projects");
        /* List<User> users = new ArrayList<>();
         ValueEventListener v = new ValueEventListener() {
