@@ -29,7 +29,6 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         binding.login.setOnClickListener(view -> {
             if(!binding.email.getText().toString().equalsIgnoreCase( "") && !binding.password.getText().toString().equalsIgnoreCase("")){
-                //SharedPreferences.Editor editor = MainActivity.account_email.edit();
                 editor.putString("email", binding.email.getText().toString());
                 editor.putString("password", binding.password.getText().toString());
                 editor.putBoolean("isAuth", true);
@@ -43,7 +42,6 @@ public class AuthorizationActivity extends AppCompatActivity {
                     !binding.password.getText().toString().equalsIgnoreCase("") &&
                     !binding.firstName.getText().toString().equalsIgnoreCase("") &&
                     !binding.secondName.getText().toString().equalsIgnoreCase("")){
-                //SharedPreferences.Editor editor = MainActivity.account_email.edit();
 
                 dbr = FirebaseDatabase.getInstance().getReference("Accounts");  //добавление акка
                 dbr.push().setValue(new Account(binding.email.getText().toString(),

@@ -25,11 +25,7 @@ import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    //private static int[] containers;
-    //private static List<Project> tempProjectsFrags;
-    private static List<Project> tempProjectsFrags = new ArrayList<>();
     private DatabaseReference dbr;
-    private String USER_KEY = "User";
     private List<Project> projects = new ArrayList<>();
     public static SharedPreferences account;
 
@@ -39,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = account.edit();
         editor.apply();
         dbr = FirebaseDatabase.getInstance().getReference();
-        //Account me = new Account("sreniy06@gmail.com", "imcool123");
-        //dbr.push().setValue(me);
 
         if(!account.getBoolean("isAuth", false))
             startActivity(new Intent(this, AuthorizationActivity.class));
@@ -49,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    //Account current;
+                    User cu = new User();
                     for (DataSnapshot da : snapshot.child("Accounts").getChildren()) {
                         Account acc = da.getValue(Account.class);
                         Log.d("account email", acc.email);
@@ -59,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("information", acc.email);
                             for (DataSnapshot dsu : snapshot.child("Users").getChildren()) {
                                 if (snapshot.child("Users").exists()) {
-                                    User cu = dsu.getValue(User.class);
+                                    cu = dsu.getValue(User.class);
                                     Log.d("current user email", cu.email);
                                     if (cu.email.equalsIgnoreCase(acc.email)) {
                                         User.thisUser = cu;
+                                        binding.userName.setText(cu.name);
                                     }
                                 }
                             }
@@ -102,12 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
                         @Override
                         public void onProjectClick(ProjectAdapter.ViewHolder holder) {
-                            Toast.makeText(getApplicationContext(), "Был выбран пункт ",
-                                    Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
                             intent.putExtra("name", holder.name);
                             intent.putExtra("description", holder.description);
-                            //Log.i("inform", holder.author);
                             intent.putExtra("author", holder.author);
                             intent.putExtra("date", holder.date);
                             intent.putExtra("cat1s", holder.cat1.name);
@@ -123,56 +115,43 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
+                    binding.userName.setText(cu.name);
+                    editor.putString("user_name", cu.name);
                     binding.list.setAdapter(pa);
                 }
-
-
             }
-
-
-
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         };
         dbr.addValueEventListener(v);
-        //Log.i("inform1", String.valueOf(users1[0])); //0
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         init();
-        /* ProjectAdapter pa = new ProjectAdapter(this, ProjectsLoader.load(), new ProjectAdapter.OnProjectClickListener() {
-            @Override
-            public void onProjectClick(ProjectAdapter.ViewHolder holder) {
-                Toast.makeText(getApplicationContext(), "Был выбран пункт ",
-                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
-                intent.putExtra("name", holder.name);
-                intent.putExtra("description", holder.description);
-                intent.putExtra("author", holder.author);
-                intent.putExtra("date", holder.date);
-
-                intent.putExtra("cat1s", holder.cat1.name);
-                intent.putExtra("cat1d", holder.cat1.drawable_id);
-                intent.putExtra("cat2s", holder.cat2.name);
-                intent.putExtra("cat2d", holder.cat2.drawable_id);
-                intent.putExtra("cat3s", holder.cat3.name);
-                intent.putExtra("cat3d", holder.cat3.drawable_id);
-                intent.putExtra("cat4s", holder.cat4.name);
-                intent.putExtra("cat4d", holder.cat4.drawable_id);
-                intent.putExtra("cat5s", holder.cat5.name);
-                intent.putExtra("cat5d", holder.cat5.drawable_id);
-                startActivity(intent);
-            }
-        });
-        binding.list.setAdapter(pa);*/
     }
 
     void init(){
+
+        binding.userName.setText(account.getString("user_name", "су ка"));
+
+        binding.exit.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = account.edit();
+            editor.putString("password", "");
+            editor.putString("email", "");
+            editor.putBoolean("isAuth", false);
+            editor.apply();
+            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+        });
+
+        binding.myProjects.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
+        });
+
        // dbr = FirebaseDatabase.getInstance().getReference("Projects");
        /* List<User> users = new ArrayList<>();
         ValueEventListener v = new ValueEventListener() {
@@ -210,16 +189,5 @@ public class MainActivity extends AppCompatActivity {
 
         Category[] cs = new Category[]{CategoryList.list[3], CategoryList.list[9], CategoryList.list[12]};*/
 
-        /*User me = new User("Арсений", "Кривецкий", dbr.getKey(), "sreniy06@gmail.com");
-        Project p1 = new Project("Приложение для контроля качетсва сна", "большой текст", cs, me);
-        Project p2 = new Project("Приложение для контроля диет", "большой текст", cs, me);
-        Project p3 = new Project("Игра на Unity", "большой текст", cs, me);
-        p1.save();
-        p2.save();
-        p3.save();*/
-
-        //p.save();
-        //DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Users");
-        //dbr.push().setValue(new User("Арсений", "Кривецкий", dbr.getKey(), "sreniy06@gmail.com"));
     }
 }

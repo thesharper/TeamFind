@@ -1,0 +1,101 @@
+package com.example.teamfind;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.example.teamfind.databinding.ActivityMyProjectsBinding;
+import com.example.teamfind.databinding.ActivityProjectBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyProjectsActivity extends AppCompatActivity {
+    ActivityMyProjectsBinding binding;
+    private DatabaseReference dbr;
+    private List<Project> projects = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        binding = ActivityMyProjectsBinding.inflate(getLayoutInflater());
+        super.onCreate(savedInstanceState);
+        setContentView(binding.getRoot());
+        init();
+
+        dbr = FirebaseDatabase.getInstance().getReference();
+        ValueEventListener v = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    User us = new User();
+                    for(DataSnapshot du : snapshot.child("User").getChildren()) {
+                        if(snapshot.child("Users").exists()){
+                            User u = du.getValue(User.class);
+                            if(u.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
+                                us = u;
+                            }
+                        }
+                    }
+
+
+
+                    for(DataSnapshot ds : snapshot.child("Projects").getChildren()){  //точно getChildren?
+                        StringProject project = ds.getValue(StringProject.class);
+                        if(project.author.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
+                            Project p = new Project(project.name, project.description, new Category[]{
+                                    CategoryList.getByName(project.categories.get(0)),
+                                    CategoryList.getByName(project.categories.get(1)),
+                                    CategoryList.getByName(project.categories.get(2)),
+                                    CategoryList.getByName(project.categories.get(3)),
+                                    CategoryList.getByName(project.categories.get(4))}, us);
+                            projects.add(p);
+                        }
+                    }
+
+                    ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
+                        @Override
+                        public void onProjectClick(ProjectAdapter.ViewHolder holder) {
+                            Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
+                            intent.putExtra("name", holder.name);
+                            intent.putExtra("description", holder.description);
+                            intent.putExtra("author", holder.author);
+                            intent.putExtra("date", holder.date);
+                            intent.putExtra("cat1s", holder.cat1.name);
+                            intent.putExtra("cat1d", holder.cat1.drawable_id);
+                            intent.putExtra("cat2s", holder.cat2.name);
+                            intent.putExtra("cat2d", holder.cat2.drawable_id);
+                            intent.putExtra("cat3s", holder.cat3.name);
+                            intent.putExtra("cat3d", holder.cat3.drawable_id);
+                            intent.putExtra("cat4s", holder.cat4.name);
+                            intent.putExtra("cat4d", holder.cat4.drawable_id);
+                            intent.putExtra("cat5s", holder.cat5.name);
+                            intent.putExtra("cat5d", holder.cat5.drawable_id);
+                            startActivity(intent);
+                        }
+                    });
+
+                    binding.list.setAdapter(pa);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        dbr.addValueEventListener(v);
+    }
+    void init(){
+        binding.mainPage.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        });
+    }
+}
