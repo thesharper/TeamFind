@@ -16,15 +16,12 @@ import java.util.Date;
 
 public class ProjectFragment extends Fragment {
     FragmentProjectBinding binding;
-    TextView cat;
     String name;
-    //Category mainCategory;
     String author;
     String date;
     Category[] categories;
     public ProjectFragment(Project project){
         this.name = project.name;
-        //this.mainCategory = mainCategory;
         this.author = project.author.name;
         this.date = project.date;
         this.categories = project.categories;
@@ -81,7 +78,6 @@ public class ProjectFragment extends Fragment {
         }
 
         return binding.getRoot();
-        //return super.onCreateView(inflater, container, savedInstanceState);
 
     }
 
@@ -90,8 +86,5 @@ public class ProjectFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public void click(){
-
-    }
 
 }

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         account = getSharedPreferences("Account", MODE_PRIVATE);
         SharedPreferences.Editor editor = account.edit();
-         //не здесь!!!!!!!!!
         dbr = FirebaseDatabase.getInstance().getReference();
 
         if(!account.getBoolean("isAuth", false))
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     for (DataSnapshot da : snapshot.child("Accounts").getChildren()) {
                         Account acc = da.getValue(Account.class);
                         Log.d("account email", acc.email);
-                        Log.d("shared pref email", account.getString("password", "nihuya"));
+                        Log.d("shared pref email", account.getString("password", "no"));
                         if (acc.password.equalsIgnoreCase(account.getString("password", ""))
                                 && acc.email.equalsIgnoreCase(account.getString("email", ""))) {
                             Log.d("information", acc.email);
@@ -70,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-                    for (DataSnapshot ds : snapshot.child("Projects").getChildren()) { //загрузил проекты
+                    for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
                         StringProject p = ds.getValue(StringProject.class);
 
 
                         User author = new User();
 
-                        for (DataSnapshot du : snapshot.child("Users").getChildren()) { //загрузил авторов на проекты
+                        for (DataSnapshot du : snapshot.child("Users").getChildren()) {
                             if (snapshot.child("Users").exists()) {
                                 User user = du.getValue(User.class);
                                 if (user != null) {
@@ -138,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     void init(){
 
-        binding.userName.setText(account.getString("user_name", "су ка"));
+        binding.userName.setText(account.getString("user_name", "not stated"));
 
         binding.exit.setOnClickListener(view -> {
             SharedPreferences.Editor editor = account.edit();
@@ -157,42 +156,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
         });
 
-       // dbr = FirebaseDatabase.getInstance().getReference("Projects");
-       /* List<User> users = new ArrayList<>();
-        ValueEventListener v = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        User us = ds.getValue(User.class);
-                        assert us != null;
-                        users.add(us);
-                        Log.i("inform", String.valueOf(users.size()));
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        dbr.addValueEventListener(v);
-        Log.i("informmm", String.valueOf(users.size()));*/
-
-
-
-        /*tempProjectsFrags.add(new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
-                new Category[]{CategoryList.list[0]}, new User("ванёк","", "t004", "")));
-
-        tempProjectsFrags.add(new Project("adsfg", "asdfg",
-                new Category[]{CategoryList.list[1]}, new User("dsfs","", "t003", "")));
-        tempProjectsFrags.add(new Project("a", "asdfg",
-                new Category[]{CategoryList.list[0], CategoryList.list[5]}, new User("dsfawers","", "t002", "")));
-        Project p = new Project("Программа для обучения нейросетей", "Реализация интерфейса для составление моделей машинного обучения и их обучения",
-                new Category[]{CategoryList.list[0]}, new User("Кривецкий", "", "a001", ""));
-
-        Category[] cs = new Category[]{CategoryList.list[3], CategoryList.list[9], CategoryList.list[12]};*/
 
     }
 }

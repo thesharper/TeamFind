@@ -54,7 +54,6 @@ public class Project {
         }
         this.date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         this.author_id = author_id;
-        //fragment = new ProjectFragment(this);
 
     }
 
@@ -71,20 +70,10 @@ public class Project {
         }
         this.date = date;
         this.author = author;
-        //fragment = new ProjectFragment(this);
 
     }
 
 
-   /* @Override
-    public String toString() {
-        String res = "P [" + name + "] [" + description + "] [" + date + "] [" + author.id + "] [";
-        for (int i = 0; i < 5; i++) {
-            if(categories[i] != null)
-                res += " " + categories[i].name;
-        }
-        return res + " ]";
-    }*/
 
     public void save(){
         String id = dbr.getKey();

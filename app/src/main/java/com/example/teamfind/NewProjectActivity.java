@@ -32,59 +32,7 @@ public class NewProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         dbr = FirebaseDatabase.getInstance().getReference();
-       /* ValueEventListener v = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (int i = 0; i < CategoryList.list.length; i++) {
-                        TextView tv = new TextView(getApplicationContext());
-                        tv.setText(CategoryList.list[i].name);
-                        tv.setBackgroundResource(CategoryList.list[i].drawable_id);
-                        tv.setTextSize(20);
-                        tv.setOnClickListener(view -> {
-                            if (selected_categories.size() < 5) {
-                                selected_categories.add(CategoryList.getByName(tv.getText().toString()));
-                                if (tv.getParent() != null) {
-                                    ((ViewGroup) tv.getParent()).removeView(tv);
-                                }
-                                binding.selectedLayout.addView(tv);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Больше нельзя!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        binding.flowLayout.addView(tv);
-                    }
 
-                    for (int i = 0; i < 5; i++) {
-                        if (i < selected_categories.size())
-                            categories[i] = selected_categories.get(i);
-                        else
-                            categories[i] = CategoryList.nullCategory;
-                    }
-
-                    User user = new User();
-                    for(DataSnapshot ds : snapshot.child("Users").getChildren()){
-                        User us = ds.getValue(User.class);
-                        if(us != null){
-                            if(MainActivity.account.getString("email", "").equalsIgnoreCase(us.email))
-                                user = us;
-                        }
-                    }
-
-                    binding.add.setOnClickListener(view -> {
-                        Project project = new Project(binding.name.getText().toString(), binding.description.getText().toString(), categories, new User(MyProjectsActivity.user.getString("name", "").split(" ")[0],
-                                MyProjectsActivity.user.getString("name", "").split(" ")[1], "", MainActivity.account.getString("email", "")));
-                        project.save();
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        dbr.addValueEventListener(v);*/
 
         for (int i = 0; i < CategoryList.list.length; i++) {
             TextView tv = new TextView(this);
@@ -125,7 +73,7 @@ public class NewProjectActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
 
-        binding.userName.setText(MainActivity.account.getString("user_name", "су ка"));
+        binding.userName.setText(MainActivity.account.getString("user_name", "not stated"));
 
         binding.exit.setOnClickListener(view -> {
             SharedPreferences.Editor editor = MainActivity.account.edit();

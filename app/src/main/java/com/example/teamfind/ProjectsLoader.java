@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectsLoader {
-    //public static List<Project> tempProjects;
     static List<Project> list = new ArrayList<>();
     static DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Projects");
     public static List<Project> load(){

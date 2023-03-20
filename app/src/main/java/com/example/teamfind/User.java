@@ -19,7 +19,6 @@ public class User {
     public String second_name;
     public String name;
     public String id;
-    //public Project[] projects;
     public String email;
     public static User thisUser;
 
@@ -35,29 +34,5 @@ public class User {
 
     static List<User> r = new ArrayList<>();
 
-    /*static User getById(String id){
-        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Users");
-        ValueEventListener vel = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        User u = ds.getValue(User.class);
-                        Log.d("log", u.email);
-                        if (u.email == id)  //email - не null, а name какого то хуя null
-                            r.add(u);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        dbr.addValueEventListener(vel);
-        Log.d("log", r.get(0).email);
-        return null;
-    }*/
 
 }
