@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("shared pref email", account.getString("password", "nihuya"));
                         if (acc.password.equalsIgnoreCase(account.getString("password", ""))
                                 && acc.email.equalsIgnoreCase(account.getString("email", ""))) {
-
+                            Log.d("information", acc.email);
                             for (DataSnapshot dsu : snapshot.child("Users").getChildren()) {
                                 if (snapshot.child("Users").exists()) {
                                     User cu = dsu.getValue(User.class);

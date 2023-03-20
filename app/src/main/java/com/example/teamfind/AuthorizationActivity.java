@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AuthorizationActivity extends AppCompatActivity {
     ActivityAuthorizationBinding binding;
+    private DatabaseReference dbr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityAuthorizationBinding.inflate(getLayoutInflater());
@@ -37,6 +38,30 @@ public class AuthorizationActivity extends AppCompatActivity {
             }
         });
 
+        binding.reg.setOnClickListener(view -> {
+            if(!binding.email.getText().toString().equalsIgnoreCase( "") &&
+                    !binding.password.getText().toString().equalsIgnoreCase("") &&
+                    !binding.firstName.getText().toString().equalsIgnoreCase("") &&
+                    !binding.secondName.getText().toString().equalsIgnoreCase("")){
+                //SharedPreferences.Editor editor = MainActivity.account_email.edit();
+
+                dbr = FirebaseDatabase.getInstance().getReference("Accounts");  //добавление акка
+                dbr.push().setValue(new Account(binding.email.getText().toString(),
+                        binding.password.getText().toString()));
+
+                dbr = FirebaseDatabase.getInstance().getReference("Users"); //добавление User'а
+                dbr.push().setValue(new User(binding.firstName.getText().toString(),
+                        binding.secondName.getText().toString(),
+                        "id_will_be_soon",
+                        binding.email.getText().toString()));
+
+                editor.putString("email", binding.email.getText().toString());
+                editor.putString("password", binding.password.getText().toString());
+                editor.putBoolean("isAuth", true);
+                editor.apply();
+                startActivity(new Intent(this, MainActivity.class));
+            }
+        });
 
     }
 }
