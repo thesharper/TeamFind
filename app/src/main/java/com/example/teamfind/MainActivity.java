@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         account = getSharedPreferences("Account", MODE_PRIVATE);
         SharedPreferences.Editor editor = account.edit();
-        editor.apply();
+         //не здесь!!!!!!!!!
         dbr = FirebaseDatabase.getInstance().getReference();
 
         if(!account.getBoolean("isAuth", false))
@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.userName.setText(cu.name);
                     editor.putString("user_name", cu.name);
                     binding.list.setAdapter(pa);
+                    editor.apply();
                 }
             }
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.teamfind.databinding.ActivityMyProjectsBinding;
@@ -21,12 +22,14 @@ public class MyProjectsActivity extends AppCompatActivity {
     ActivityMyProjectsBinding binding;
     private DatabaseReference dbr;
     private List<Project> projects = new ArrayList<>();
+    static public SharedPreferences user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityMyProjectsBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+        user = getSharedPreferences("User", MODE_PRIVATE);
         init();
 
         dbr = FirebaseDatabase.getInstance().getReference();
@@ -35,15 +38,18 @@ public class MyProjectsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     User us = new User();
+                    SharedPreferences.Editor editor = user.edit();
                     for(DataSnapshot du : snapshot.child("User").getChildren()) {
                         if(snapshot.child("Users").exists()){
                             User u = du.getValue(User.class);
                             if(u.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
                                 us = u;
+                                editor.putString("name", us.name);
+                                editor.putString("email", us.email);
                             }
                         }
                     }
-
+                    editor.apply();
 
 
                     for(DataSnapshot ds : snapshot.child("Projects").getChildren()){  //точно getChildren?
