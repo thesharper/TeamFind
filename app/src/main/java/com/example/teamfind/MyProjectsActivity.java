@@ -103,5 +103,16 @@ public class MyProjectsActivity extends AppCompatActivity {
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
+        binding.newProject.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+        });
+        binding.exit.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = MainActivity.account.edit();
+            editor.putString("password", "");
+            editor.putString("email", "");
+            editor.putBoolean("isAuth", false);
+            editor.apply();
+            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+        });
     }
 }

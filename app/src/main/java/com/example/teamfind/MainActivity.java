@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Toast;
 
 import com.example.teamfind.databinding.ActivityMainBinding;
@@ -156,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
         });
 
-
+        binding.about.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
+        });
     }
 }

@@ -58,7 +58,13 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Мои проекты"/>
+            android:text="Мои проекты"
+            android:id="@+id/my_projects"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Создать проект"
+            android:id="@+id/new_project"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
