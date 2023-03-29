@@ -67,6 +67,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Чаты"
+            android:id="@+id/chats"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Настройки"/>
         <Button
             android:layout_width="match_parent"

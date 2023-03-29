@@ -55,7 +55,10 @@ public class AuthorizationActivity extends AppCompatActivity {
 
                 editor.putString("email", binding.email.getText().toString());
                 editor.putString("password", binding.password.getText().toString());
+                editor.putString("first_name", binding.firstName.getText().toString());
+                editor.putString("second_name", binding.secondName.getText().toString());
                 editor.putBoolean("isAuth", true);
+
                 editor.apply();
                 startActivity(new Intent(this, MainActivity.class));
             }

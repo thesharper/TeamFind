@@ -39,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
         if(!account.getBoolean("isAuth", false))
             startActivity(new Intent(this, AuthorizationActivity.class));
 
+
+
+        /*Chat chat = new Chat();
+        chat.user1 = "sreniy06@gmail.com";
+        chat.user2 = "vs123@mail.com";
+        chat.m.add(new Message("Здарова леший", "Арсений Кривецкий", "18:40 29.03.23"));
+        chat.m.add(new Message("пошёл нахуй!", "Вася Смирнов", "18:40 29.03.23"));
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Chats");
+        db.push().setValue(chat);*/
+
         ValueEventListener v = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -159,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding.about.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatActivity.class));
+        });
+        binding.chats.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
         });
     }
 }

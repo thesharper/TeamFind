@@ -20,17 +20,33 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+        List<Message> messages = new ArrayList<>();
+        //int i = 0;
+        /*while(true){
+            try{
+                messages.add(new Message(getIntent().getExtras().getString("messages" + i + "text"),
+                        getIntent().getExtras().getString("messages" + i + "name"),
+                        getIntent().getExtras().getString("messages" + i + "date")));
+            }
+            catch (Exception e){
+                break;
+            }
+            i++;
+        }*/
+
+        String[] messagese = getIntent().getStringArrayExtra("messages");
+        for (int i = 0; i < messagese.length; i += 3) {
+            messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2]));
+        }
 
 
-
-        Message mes = new Message("привет!", "Васёк", true);
+       /* Message mes = new Message("привет!", "Васёк", true);
         Message mes1 = new Message("привки", "Петька", false);
         Message mes2 = new Message("а наш участковый, ментовская рожа...", "Петька", false);
-        List<Message> messages = new ArrayList<>();
 
         messages.add(mes);
         messages.add(mes1);
-        messages.add(mes2);
+        messages.add(mes2);*/
 
 
         MessageAdapter ma = new MessageAdapter(getApplicationContext(), messages);

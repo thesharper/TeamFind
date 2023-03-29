@@ -19,4 +19,10 @@ public class Message {
         this.text = text;
         this.date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
     }
+    public Message(String text, String username, String date){
+        this.text = text;
+        this.username = username;
+        this.date = date;
+    }
+    public Message(){}
 }

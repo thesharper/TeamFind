@@ -52,7 +52,7 @@ public class MyProjectsActivity extends AppCompatActivity {
                     editor.apply();
 
 
-                    for(DataSnapshot ds : snapshot.child("Projects").getChildren()){  //точно getChildren?
+                    for(DataSnapshot ds : snapshot.child("Projects").getChildren()){
                         StringProject project = ds.getValue(StringProject.class);
                         if(project.author.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
                             Project p = new Project(project.name, project.description, new Category[]{
