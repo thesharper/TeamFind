@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="6dp">
+    android:layout_margin="6dp"
+    android:layout_gravity="right">
     <LinearLayout
-
         android:orientation="vertical"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
 
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="привет здарова здрасте)"
                 android:textSize="14dp"
-                android:textColor="@color/black"
+                android:textColor="@color/purple_500"
                 android:id="@+id/text"/>
 
         </LinearLayout>

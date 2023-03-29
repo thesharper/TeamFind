@@ -7,10 +7,12 @@ public class Message {
     public String text;
     public String username;
     public String date;
-    public Message(String text, String username){
+    public boolean my;
+    public Message(String text, String username, boolean my){
         this.text = text;
         this.username = username;
         this.date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+        this.my = my;
     }
 
     public Message(String text){

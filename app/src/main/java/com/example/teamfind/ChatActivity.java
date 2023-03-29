@@ -1,6 +1,7 @@
 package com.example.teamfind;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
-    Chat tempChat = new Chat();
-//    Display display = getWindowManager().getDefaultDisplay();
-    DisplayMetrics displaymetrics = new DisplayMetrics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +21,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-        Message mes = new Message("привет!", "Васёк");
-        Message mes1 = new Message("привки", "Петька");
-        Message mes2 = new Message("а наш участковый, ментовская рожа...", "Петька");
+
+
+        Message mes = new Message("привет!", "Васёк", true);
+        Message mes1 = new Message("привки", "Петька", false);
+        Message mes2 = new Message("а наш участковый, ментовская рожа...", "Петька", false);
         List<Message> messages = new ArrayList<>();
+
         messages.add(mes);
         messages.add(mes1);
         messages.add(mes2);
