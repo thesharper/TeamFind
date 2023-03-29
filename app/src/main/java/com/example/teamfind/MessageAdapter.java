@@ -82,7 +82,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BaseView
             public void bind(Message message){
                 Log.d("chatInf", String.valueOf(message.my));
 
-                text = message.text + "my";
+                text = message.text;
                 name = message.username;
                 date = message.date;
 
@@ -106,8 +106,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BaseView
                 binding = FragmentMessageBinding.bind(itemView);
             }
             public void bind(Message message){
-                Log.d("chatInf", String.valueOf(message.my));
-                text = message.text + "own";
+                text = message.text;
                 name = message.username;
                 date = message.date;
 

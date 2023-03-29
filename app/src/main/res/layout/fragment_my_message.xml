@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="привет здарова здрасте)"
                     android:textSize="14dp"
-                    android:textColor="@color/purple_500"
+                    android:textColor="@color/black"
                     android:id="@+id/text"/>
 
             </LinearLayout>
