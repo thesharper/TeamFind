@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 
 import com.example.teamfind.databinding.ActivityChatBinding;
@@ -21,22 +22,20 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         List<Message> messages = new ArrayList<>();
-        //int i = 0;
-        /*while(true){
-            try{
-                messages.add(new Message(getIntent().getExtras().getString("messages" + i + "text"),
-                        getIntent().getExtras().getString("messages" + i + "name"),
-                        getIntent().getExtras().getString("messages" + i + "date")));
-            }
-            catch (Exception e){
-                break;
-            }
-            i++;
-        }*/
+        String fn = MainActivity.account.getString("first_name", "null") + " " +
+                MainActivity.account.getString("second_name", "null");
+        Log.d("dfg", fn);
 
         String[] messagese = getIntent().getStringArrayExtra("messages");
         for (int i = 0; i < messagese.length; i += 3) {
-            messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2]));
+            Message m = new Message(messagese[i], messagese[i + 1], messagese[i + 2]);
+            if(m.username.equalsIgnoreCase(fn)){
+                messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], true));
+
+            }
+            else {
+                messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], false));
+            }
         }
 
 

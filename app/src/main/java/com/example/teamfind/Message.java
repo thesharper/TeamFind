@@ -25,4 +25,10 @@ public class Message {
         this.date = date;
     }
     public Message(){}
+    public Message(String text, String username, String date, boolean my){
+        this.text = text;
+        this.username = username;
+        this.date = date;
+        this.my = my;
+    }
 }

@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
                         editor.putBoolean("isAuth", false);
                         startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
                     }
+                    else{
+                        editor.putString("first_name", User.thisUser.first_name);
+                        editor.putString("second_name", User.thisUser.second_name);
+                        editor.putBoolean("isAuth", true);
+                    }
 
 
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
