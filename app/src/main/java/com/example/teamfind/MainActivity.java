@@ -41,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*Chat chat = new Chat();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Chats");
+        Chat chat = new Chat();
         chat.user1 = "sreniy06@gmail.com";
         chat.user2 = "vs123@mail.com";
         chat.m.add(new Message("Здарова леший", "Арсений Кривецкий", "18:40 29.03.23"));
         chat.m.add(new Message("пошёл нахуй!", "Вася Смирнов", "18:40 29.03.23"));
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Chats");
-        db.push().setValue(chat);*/
+        chat.id = db.getKey();
+
+        db.push().setValue(chat);
 
         ValueEventListener v = new ValueEventListener() {
             @Override

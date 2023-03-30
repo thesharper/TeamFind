@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.teamfind.databinding.ActivityChatsBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -37,11 +38,17 @@ public class ChatsActivity extends AppCompatActivity {
                         if(snapshot.child("Chats").exists()){
 
                             Chat c = dc.getValue(Chat.class);
-                            if(c.user1.equalsIgnoreCase(MainActivity.account.getString("email", "no")) ||
-                                    c.user2.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
-                                chats.add(c);
-                                Log.d("cyka", c.user1);
-                                Log.d("cyka", String.valueOf(chats.size()));
+                            Log.d("cykasdfg", MainActivity.account.getString("email", "no"));
+                            if(c != null) {
+                                if (MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user1) ||
+                                        MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user2)) {
+                                    c.id = dc.getKey();
+                                    chats.add(c);
+
+                                    Log.d("shgdsh", c.id);
+                                    Log.d("cyka", c.user1);
+                                    Log.d("cyka", String.valueOf(chats.size()));
+                                }
                             }
                         }
                     }
@@ -59,6 +66,9 @@ public class ChatsActivity extends AppCompatActivity {
                             }
 
                             intent.putExtra("messages", everything);
+                            intent.putExtra("id", holder.id);
+
+
                             startActivity(intent);
                         }
                     });

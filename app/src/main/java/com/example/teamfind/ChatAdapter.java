@@ -52,6 +52,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     }
     static class ViewHolder extends RecyclerView.ViewHolder{
         public String name;
+        public String id;
         public List<Message> messages;
 
         private final FragmentChatBinding itemBinding;
@@ -62,6 +63,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         public void bind(Chat chat){
             name = chat.user1;
             messages = chat.m;
+            id = chat.id;
             itemBinding.name.setText(name);
         }
     }
