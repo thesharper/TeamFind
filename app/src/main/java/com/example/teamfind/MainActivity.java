@@ -40,17 +40,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, AuthorizationActivity.class));
 
 
-
-        /*DatabaseReference db = FirebaseDatabase.getInstance().getReference("Chats");
-        Chat chat = new Chat();
-        chat.user1 = "sreniy06@gmail.com";
-        chat.user2 = "vs123@mail.com";
-        chat.m.add(new Message("Здарова леший", "Арсений Кривецкий", "18:40 29.03.23"));
-        chat.m.add(new Message("пошёл нахуй!", "Вася Смирнов", "18:40 29.03.23"));
-        chat.id = db.getKey();
-
-        db.push().setValue(chat);*/
-
         ValueEventListener v = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (snapshot.child("Users").exists()) {
                                     cu = dsu.getValue(User.class);
                                     Log.d("current user email", cu.email);
-                                    if (cu.email.equalsIgnoreCase(acc.email)) {
+                                    if (cu.email.equalsIgnoreCase(account.getString("email", ""))) {
                                         User.thisUser = cu;
-                                        binding.userName.setText(cu.name);
+                                        //binding.userName.setText(cu.name);
                                     }
                                 }
                             }
@@ -85,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("second_name", User.thisUser.second_name);
                         editor.putBoolean("isAuth", true);
                     }
+
+                    binding.userName.setText(account.getString("first_name", "null") + " " +
+                            account.getString("second_name", "null"));
 
                     projects.clear();
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
@@ -132,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-                    binding.userName.setText(cu.name);
+                    //binding.userName.setText(cu.name);
                     editor.putString("user_name", cu.name);
                     binding.list.setAdapter(pa);
                     editor.apply();

@@ -41,7 +41,6 @@ public class ChatsActivity extends AppCompatActivity {
                         if(snapshot.child("Chats").exists()){
 
                             Chat c = dc.getValue(Chat.class);
-                            Log.d("cykasdfg", MainActivity.account.getString("email", "no"));
                             if(c != null) {
                                 if (MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user1) ||
                                         MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user2)) {
@@ -53,22 +52,17 @@ public class ChatsActivity extends AppCompatActivity {
                                             User r = ds.getValue(User.class);
 
                                             if(r != null) {
-                                                Log.d("username", r.email);
-                                                Log.d("my_name", MainActivity.account.getString("email", "no"));
+
                                                 if ((c.user1.equalsIgnoreCase(r.email) || c.user2.equalsIgnoreCase(r.email)) &&
                                                         !r.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))) {
                                                     names.add(r.name);
-                                                    Log.d("here i am", "yeaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
                                                 }
                                             }
                                         }
                                     }
 
                                     chats.add(c);
-
-                                    Log.d("shgdsh", c.id);
-                                    Log.d("cyka", c.user1);
-                                    Log.d("cyka", String.valueOf(chats.size()));
                                 }
                             }
                         }
