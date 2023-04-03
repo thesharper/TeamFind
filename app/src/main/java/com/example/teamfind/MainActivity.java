@@ -47,15 +47,11 @@ public class MainActivity extends AppCompatActivity {
                     User cu = new User();
                     for (DataSnapshot da : snapshot.child("Accounts").getChildren()) {
                         Account acc = da.getValue(Account.class);
-                        Log.d("account email", acc.email);
-                        Log.d("shared pref email", account.getString("password", "no"));
                         if (acc.password.equalsIgnoreCase(account.getString("password", ""))
                                 && acc.email.equalsIgnoreCase(account.getString("email", ""))) {
-                            Log.d("information", acc.email);
                             for (DataSnapshot dsu : snapshot.child("Users").getChildren()) {
                                 if (snapshot.child("Users").exists()) {
                                     cu = dsu.getValue(User.class);
-                                    Log.d("current user email", cu.email);
                                     if (cu.email.equalsIgnoreCase(account.getString("email", ""))) {
                                         User.thisUser = cu;
                                         //binding.userName.setText(cu.name);

@@ -32,7 +32,4 @@ public class User {
     public User(){}
 
 
-    static List<User> r = new ArrayList<>();
-
-
 }

@@ -68,24 +68,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-
-        Log.d("dfg", fn);
-
-        String[] messagese = getIntent().getStringArrayExtra("messages");
-        /*for (int i = 0; i < messagese.length; i += 3) {
-            Message m = new Message(messagese[i], messagese[i + 1], messagese[i + 2]);
-            if(m.username.equalsIgnoreCase(fn)){
-                messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], true));
-
-            }
-            else {
-                messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], false));
-            }
-        }*/
-
-
-
-
         MessageAdapter ma = new MessageAdapter(getApplicationContext(), messages);
         //binding.list.setAdapter(ma);
 

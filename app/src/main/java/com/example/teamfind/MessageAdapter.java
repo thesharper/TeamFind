@@ -80,7 +80,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BaseView
                 binding = FragmentMyMessageBinding.bind(itemView);
             }
             public void bind(Message message){
-                Log.d("chatInf", String.valueOf(message.my));
 
                 text = message.text;
                 name = message.username;
