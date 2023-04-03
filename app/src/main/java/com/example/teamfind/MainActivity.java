@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putBoolean("isAuth", true);
                     }
 
-
+                    projects.clear();
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
                         StringProject p = ds.getValue(StringProject.class);
 

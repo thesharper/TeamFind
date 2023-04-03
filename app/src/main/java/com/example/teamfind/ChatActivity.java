@@ -40,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    messages.clear();
                     for(DataSnapshot ds : snapshot.child("m").getChildren()){
                         Message m = ds.getValue(Message.class);
                         if(m != null) {
@@ -71,7 +72,7 @@ public class ChatActivity extends AppCompatActivity {
         Log.d("dfg", fn);
 
         String[] messagese = getIntent().getStringArrayExtra("messages");
-        for (int i = 0; i < messagese.length; i += 3) {
+        /*for (int i = 0; i < messagese.length; i += 3) {
             Message m = new Message(messagese[i], messagese[i + 1], messagese[i + 2]);
             if(m.username.equalsIgnoreCase(fn)){
                 messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], true));
@@ -80,18 +81,19 @@ public class ChatActivity extends AppCompatActivity {
             else {
                 messages.add(new Message(messagese[i], messagese[i + 1], messagese[i + 2], false));
             }
-        }
+        }*/
 
 
 
 
         MessageAdapter ma = new MessageAdapter(getApplicationContext(), messages);
-        binding.list.setAdapter(ma);
+        //binding.list.setAdapter(ma);
 
         binding.send.setOnClickListener(view -> {
             messages.add(new Message(binding.write.getText().toString(), fn,
                     new SimpleDateFormat("dd.MM.yyyy").format(new Date())));
             dbr.child(getIntent().getExtras().getString("id")).child("m").setValue(messages);
+            binding.write.setText("");
         });
     }
 }

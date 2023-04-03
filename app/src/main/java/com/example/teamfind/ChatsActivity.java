@@ -24,6 +24,7 @@ public class ChatsActivity extends AppCompatActivity {
     ActivityChatsBinding binding;
     private DatabaseReference dbr;
     private List<Chat> chats = new ArrayList<>();
+    private List<String> names = new ArrayList<>();
     static public SharedPreferences user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class ChatsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    chats.clear();
+                    names.clear();
                     for(DataSnapshot dc : snapshot.child("Chats").getChildren()) {
                         if(snapshot.child("Chats").exists()){
 
@@ -43,6 +46,24 @@ public class ChatsActivity extends AppCompatActivity {
                                 if (MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user1) ||
                                         MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user2)) {
                                     c.id = dc.getKey();
+
+                                    //поиск полных имен пользователей для отображения названия чата
+                                    for(DataSnapshot ds : snapshot.child("Users").getChildren()){
+                                        if(snapshot.child("Users").exists()){
+                                            User r = ds.getValue(User.class);
+
+                                            if(r != null) {
+                                                Log.d("username", r.email);
+                                                Log.d("my_name", MainActivity.account.getString("email", "no"));
+                                                if ((c.user1.equalsIgnoreCase(r.email) || c.user2.equalsIgnoreCase(r.email)) &&
+                                                        !r.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))) {
+                                                    names.add(r.name);
+                                                    Log.d("here i am", "yeaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                                                }
+                                            }
+                                        }
+                                    }
+
                                     chats.add(c);
 
                                     Log.d("shgdsh", c.id);
@@ -53,7 +74,7 @@ public class ChatsActivity extends AppCompatActivity {
                         }
                     }
 
-                    ChatAdapter ca = new ChatAdapter(getApplicationContext(), chats, new ChatAdapter.OnChatClickListener() {
+                    ChatAdapter ca = new ChatAdapter(getApplicationContext(), chats, names, new ChatAdapter.OnChatClickListener() {
                         @Override
                         public void onChatClick(ChatAdapter.ViewHolder holder) {
                             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
