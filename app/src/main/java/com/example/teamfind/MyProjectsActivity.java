@@ -1,5 +1,7 @@
 package com.example.teamfind;
 
+import static com.example.teamfind.MainActivity.account;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +44,7 @@ public class MyProjectsActivity extends AppCompatActivity {
                     for(DataSnapshot du : snapshot.child("User").getChildren()) {
                         if(snapshot.child("Users").exists()){
                             User u = du.getValue(User.class);
-                            if(u.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
+                            if(u.email.equalsIgnoreCase(account.getString("email", "no"))){
                                 us = u;
                                 editor.putString("name", us.name);
                                 editor.putString("email", us.email);
@@ -54,7 +56,7 @@ public class MyProjectsActivity extends AppCompatActivity {
 
                     for(DataSnapshot ds : snapshot.child("Projects").getChildren()){
                         StringProject project = ds.getValue(StringProject.class);
-                        if(project.author.equalsIgnoreCase(MainActivity.account.getString("email", "no"))){
+                        if(project.author.equalsIgnoreCase(account.getString("email", "no"))){
                             Project p = new Project(project.name, project.description, new Category[]{
                                     CategoryList.getByName(project.categories.get(0)),
                                     CategoryList.getByName(project.categories.get(1)),
@@ -100,19 +102,35 @@ public class MyProjectsActivity extends AppCompatActivity {
         dbr.addValueEventListener(v);
     }
     void init(){
-        binding.mainPage.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        });
-        binding.newProject.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
-        });
+
+        binding.userName.setText(account.getString("first_name", "null") + " " +
+                account.getString("second_name", "null"));
+
         binding.exit.setOnClickListener(view -> {
-            SharedPreferences.Editor editor = MainActivity.account.edit();
+            SharedPreferences.Editor editor = account.edit();
             editor.putString("password", "");
             editor.putString("email", "");
             editor.putBoolean("isAuth", false);
             editor.apply();
             startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+        });
+
+        binding.myProjects.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
+        });
+
+        binding.newProject.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+        });
+
+        binding.about.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
+        });
+        binding.chats.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
+        });
+        binding.mainPage.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
     }
 }

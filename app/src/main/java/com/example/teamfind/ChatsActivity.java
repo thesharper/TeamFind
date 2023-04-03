@@ -1,5 +1,7 @@
 package com.example.teamfind;
 
+import static com.example.teamfind.MainActivity.account;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,8 +44,8 @@ public class ChatsActivity extends AppCompatActivity {
 
                             Chat c = dc.getValue(Chat.class);
                             if(c != null) {
-                                if (MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user1) ||
-                                        MainActivity.account.getString("email", "no").equalsIgnoreCase(c.user2)) {
+                                if (account.getString("email", "no").equalsIgnoreCase(c.user1) ||
+                                        account.getString("email", "no").equalsIgnoreCase(c.user2)) {
                                     c.id = dc.getKey();
 
                                     //поиск полных имен пользователей для отображения названия чата
@@ -54,7 +56,7 @@ public class ChatsActivity extends AppCompatActivity {
                                             if(r != null) {
 
                                                 if ((c.user1.equalsIgnoreCase(r.email) || c.user2.equalsIgnoreCase(r.email)) &&
-                                                        !r.email.equalsIgnoreCase(MainActivity.account.getString("email", "no"))) {
+                                                        !r.email.equalsIgnoreCase(account.getString("email", "no"))) {
                                                     names.add(r.name);
 
                                                 }
@@ -105,7 +107,40 @@ public class ChatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         user = getSharedPreferences("User", MODE_PRIVATE);
+        init();
 
 
+    }
+
+    void init(){
+
+        binding.userName.setText(account.getString("first_name", "null") + " " +
+                account.getString("second_name", "null"));
+
+
+        binding.exit.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = account.edit();
+            editor.putString("password", "");
+            editor.putString("email", "");
+            editor.putBoolean("isAuth", false);
+            editor.apply();
+            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+        });
+
+        binding.myProjects.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
+        });
+
+        binding.newProject.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+        });
+
+        binding.about.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
+        });
+
+        binding.mainPage.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        });
     }
 }

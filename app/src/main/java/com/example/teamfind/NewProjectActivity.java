@@ -1,5 +1,7 @@
 package com.example.teamfind;
 
+import static com.example.teamfind.MainActivity.account;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +34,7 @@ public class NewProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         dbr = FirebaseDatabase.getInstance().getReference();
+        init();
 
 
         for (int i = 0; i < CategoryList.list.length; i++) {
@@ -62,21 +65,18 @@ public class NewProjectActivity extends AppCompatActivity {
         }
 
         binding.add.setOnClickListener(view -> {
-            Project project = new Project(binding.name.getText().toString(), binding.description.getText().toString(), selected_categories, new User(MainActivity.account.getString("user_name", "").split(" ")[0],
-                    MainActivity.account.getString("user_name", "").split(" ")[1], "", MainActivity.account.getString("email", "")));
-            //str str list<cat> str
+            Project project = new Project(binding.name.getText().toString(), binding.description.getText().toString(), selected_categories, new User(account.getString("user_name", "").split(" ")[0],
+                    account.getString("user_name", "").split(" ")[1], "", account.getString("email", "")));
             project.save();
         });
     }
     void init(){
-        binding.mainPage.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        });
 
-        binding.userName.setText(MainActivity.account.getString("user_name", "not stated"));
+        binding.userName.setText(account.getString("first_name", "null") + " " +
+                account.getString("second_name", "null"));
 
         binding.exit.setOnClickListener(view -> {
-            SharedPreferences.Editor editor = MainActivity.account.edit();
+            SharedPreferences.Editor editor = account.edit();
             editor.putString("password", "");
             editor.putString("email", "");
             editor.putBoolean("isAuth", false);
@@ -86,6 +86,17 @@ public class NewProjectActivity extends AppCompatActivity {
 
         binding.myProjects.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
+        });
+
+        binding.newProject.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+        });
+
+        binding.about.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
+        });
+        binding.chats.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
         });
     }
 }
