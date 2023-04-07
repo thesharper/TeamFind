@@ -75,6 +75,10 @@ public class NewProjectActivity extends AppCompatActivity {
         binding.userName.setText(account.getString("first_name", "null") + " " +
                 account.getString("second_name", "null"));
 
+        binding.mainPage.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        });
+
         binding.exit.setOnClickListener(view -> {
             SharedPreferences.Editor editor = account.edit();
             editor.putString("password", "");

@@ -1,5 +1,9 @@
 package com.example.teamfind;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+
 public class Account {
     public String email;
     public String password;
@@ -9,4 +13,5 @@ public class Account {
         this.password = password;
     }
     public Account(){}
+
 }

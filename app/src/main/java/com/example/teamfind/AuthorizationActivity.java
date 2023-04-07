@@ -2,6 +2,8 @@ package com.example.teamfind;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FlingAnimation;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +27,11 @@ public class AuthorizationActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = MainActivity.account.edit();
         editor.putBoolean("isAuth", false);
         editor.apply();
+
+        FlingAnimation fa = new FlingAnimation(binding.login, DynamicAnimation.Y);
+        fa.setStartVelocity(-30f);
+        fa.setFriction(0.3f);
+        fa.start();
 
 
         binding.login.setOnClickListener(view -> {

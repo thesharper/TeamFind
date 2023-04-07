@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#deecfa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AuthorizationActivity"
@@ -36,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Введите email"
+        android:hint="Введите логин"
         android:id="@+id/email"/>
     <EditText
         android:layout_width="match_parent"
@@ -52,15 +53,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Зарегистрироваться"
-            android:id="@+id/reg"/>
+            android:id="@+id/reg"
+            android:background="@color/teal_700" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Войти"
             android:gravity="center"
             android:layout_gravity="center"
-            android:id="@+id/login"/>
+            android:id="@+id/login"
+            android:background="@color/teal_700"
+            android:layout_margin="8dp"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="152dp"
+        android:layout_height="152dp"
+        android:layout_gravity="center"
+        android:id="@+id/logo"
+        android:layout_margin="28dp"
+        android:background="@mipmap/ic_launcher_foreground" />
 
 </LinearLayout>
