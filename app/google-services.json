@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "212134746808",
+    "firebase_url": "https://teamfinddatabase-default-rtdb.firebaseio.com",
+    "project_id": "teamfinddatabase",
+    "storage_bucket": "teamfinddatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212134746808:android:3efc9891ebf704eac7f24d",
+        "android_client_info": {
+          "package_name": "com.example.teamfind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212134746808-7r2r27vsufpf1t92i7d61dg4ag1rn9r7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC64SN0Oy6_oWtf1ZNu42H04WRwjhKTWzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212134746808-7r2r27vsufpf1t92i7d61dg4ag1rn9r7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
