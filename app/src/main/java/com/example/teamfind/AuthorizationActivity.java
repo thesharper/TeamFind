@@ -28,10 +28,15 @@ public class AuthorizationActivity extends AppCompatActivity {
         editor.putBoolean("isAuth", false);
         editor.apply();
 
-        FlingAnimation fa = new FlingAnimation(binding.login, DynamicAnimation.Y);
-        fa.setStartVelocity(-30f);
-        fa.setFriction(0.3f);
-        fa.start();
+        binding.logo.setOnClickListener(view -> {
+            FlingAnimation fa = new FlingAnimation(binding.logo, DynamicAnimation.X);
+            fa.setStartVelocity(30f);
+            fa.setFriction(0.3f);
+            fa.start();
+
+        });
+
+
 
 
         binding.login.setOnClickListener(view -> {
