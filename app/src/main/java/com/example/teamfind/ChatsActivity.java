@@ -84,6 +84,7 @@ public class ChatsActivity extends AppCompatActivity {
 
                             intent.putExtra("messages", everything);
                             intent.putExtra("id", holder.id);
+                            intent.putExtra("username", holder.name);
 
 
                             startActivity(intent);

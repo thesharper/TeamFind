@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -67,6 +68,11 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+
+        binding.username.setText(getIntent().getExtras().getString("username"));
+        binding.back.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
+        });
 
         MessageAdapter ma = new MessageAdapter(getApplicationContext(), messages);
         //binding.list.setAdapter(ma);

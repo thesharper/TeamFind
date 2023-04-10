@@ -76,10 +76,10 @@
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="#deecfa">
 
         <LinearLayout
-            android:background="@color/purple_500"
+            android:background="@color/teal_700"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -107,36 +107,67 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:text="Поиск проектов"
-            android:id="@+id/main_page"/>
+            android:id="@+id/mainPage"
+            android:background="@color/teal_700"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Мои проекты"
-            android:id="@+id/my_projects"/>
+            android:id="@+id/my_projects"
+            android:background="@color/teal_700"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Создать проект"
-            android:id="@+id/new_project"/>
+            android:id="@+id/new_project"
+            android:background="@color/teal_700" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Чаты"
-            android:id="@+id/chats"/>
+            android:id="@+id/chats"
+            android:background="@color/teal_700"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Настройки"/>
+            android:text="Настройки"
+            android:background="@color/teal_700"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="О приложении"
-            android:id="@+id/about"/>
+            android:id="@+id/about"
+            android:background="@color/teal_700"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#012c42" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Выход из аккаунта"
-            android:id="@+id/exit"/>
+            android:id="@+id/exit"
+            android:background="@color/teal_700"/>
 
     </LinearLayout>
 
