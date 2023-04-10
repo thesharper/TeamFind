@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -126,18 +128,47 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    binding.search.setOnKeyListener(new View.OnKeyListener() {
-                        List<Project> search_projects = new ArrayList<>();
-                        public boolean onKey(View v, int keyCode, KeyEvent event)
-                        {
-                            if(event.getAction() == KeyEvent.ACTION_DOWN &&
-                                    (keyCode == KeyEvent.KEYCODE_ENTER))
-                            {
-                                Toast.makeText(getApplicationContext(), "Нажатие на клавиатуру", Toast.LENGTH_SHORT).show();
+                    binding.search.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                        }
 
-                                return true;
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            List<Project> search_projects = new ArrayList<>();
+                            String request = binding.search.getText().toString();
+
+                            for(Project p : projects){
+                                if(p.name.contains(request)){
+                                    search_projects.add(p);
+                                }
                             }
-                            return false;
+
+                            ProjectAdapter spa = new ProjectAdapter(getApplicationContext(), search_projects, new ProjectAdapter.OnProjectClickListener() {
+                                @Override
+                                public void onProjectClick(ProjectAdapter.ViewHolder holder) {
+                                    Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
+                                    intent.putExtra("name", holder.name);
+                                    intent.putExtra("description", holder.description);
+                                    intent.putExtra("author", holder.author);
+                                    intent.putExtra("date", holder.date);
+                                    intent.putExtra("cat1s", holder.cat1.name);
+                                    intent.putExtra("cat1d", holder.cat1.drawable_id);
+                                    intent.putExtra("cat2s", holder.cat2.name);
+                                    intent.putExtra("cat2d", holder.cat2.drawable_id);
+                                    intent.putExtra("cat3s", holder.cat3.name);
+                                    intent.putExtra("cat3d", holder.cat3.drawable_id);
+                                    intent.putExtra("cat4s", holder.cat4.name);
+                                    intent.putExtra("cat4d", holder.cat4.drawable_id);
+                                    intent.putExtra("cat5s", holder.cat5.name);
+                                    intent.putExtra("cat5d", holder.cat5.drawable_id);
+                                    startActivity(intent);
+                                }
+                            });
+                            binding.list.setAdapter(spa);
                         }
                     });
 
@@ -195,35 +226,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-/*
-Toast.makeText(getApplicationContext(), "dsfhsd", Toast.LENGTH_SHORT).show();
-        String request = binding.search.getText().toString();
-
-        for(Project p : projects){
-        if(p.name.contains(request)){
-        search_projects.add(p);
-        }
-        }
-
-        ProjectAdapter spa = new ProjectAdapter(getApplicationContext(), search_projects, new ProjectAdapter.OnProjectClickListener() {
-@Override
-public void onProjectClick(ProjectAdapter.ViewHolder holder) {
-        Intent intent = new Intent(getApplicationContext(), ProjectActivity.class);
-        intent.putExtra("name", holder.name);
-        intent.putExtra("description", holder.description);
-        intent.putExtra("author", holder.author);
-        intent.putExtra("date", holder.date);
-        intent.putExtra("cat1s", holder.cat1.name);
-        intent.putExtra("cat1d", holder.cat1.drawable_id);
-        intent.putExtra("cat2s", holder.cat2.name);
-        intent.putExtra("cat2d", holder.cat2.drawable_id);
-        intent.putExtra("cat3s", holder.cat3.name);
-        intent.putExtra("cat3d", holder.cat3.drawable_id);
-        intent.putExtra("cat4s", holder.cat4.name);
-        intent.putExtra("cat4d", holder.cat4.drawable_id);
-        intent.putExtra("cat5s", holder.cat5.name);
-        intent.putExtra("cat5d", holder.cat5.drawable_id);
-        startActivity(intent);
-        }
-        });
-        binding.list.setAdapter(spa); */
