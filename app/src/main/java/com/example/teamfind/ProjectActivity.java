@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.teamfind.databinding.ActivityProjectBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -55,28 +56,59 @@ public class ProjectActivity extends AppCompatActivity {
                                 if(getIntent().getExtras().get("name").toString().equalsIgnoreCase(sp.name)){
                                     username = sp.author;
                                     Chat c = new Chat(account.getString("email", "no"), username);
-                                    c.id = dbr.child("Chats").getKey();
                                     boolean this_chat_exist = false;
 
                                     if(snapshot.child("Chats").exists()) {
                                         for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
                                             Chat schat = chat.getValue(Chat.class);
-                                            if (schat.user1 != null && schat.user2 != null) {
-                                                if ((schat.user1.equalsIgnoreCase(c.user1) || schat.user1.equalsIgnoreCase(c.user2)) &&
-                                                        (schat.user2.equalsIgnoreCase(c.user1) || schat.user2.equalsIgnoreCase(c.user2))) {
-                                                    this_chat_exist = true;
-                                                    c = schat;
 
+                                            if(schat != null) {
+                                                if (schat.user1 != null && schat.user2 != null) {
+                                                    if ((schat.user1.equalsIgnoreCase(c.user1) || schat.user1.equalsIgnoreCase(c.user2)) &&
+                                                            (schat.user2.equalsIgnoreCase(c.user1) || schat.user2.equalsIgnoreCase(c.user2))) {
+                                                        this_chat_exist = true;
+                                                        c = schat;
+                                                        c.id = chat.getKey();
+                                                    }
                                                 }
                                             }
-
                                         }
                                     }
                                     if(!this_chat_exist) {
-                                        dbr.child("Chats").push().setValue(c);
+
+                                        //dbr.child("Chats").push().setValue(c); //найти его чтобы получить айди???
+
+
+                                        DatabaseReference ref = dbr.child("Chats").push();
+                                        String key = ref.getKey();
+                                        ref.setValue(c);
+
+                                        /*if(snapshot.child("Chats").exists()) {
+                                            for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
+                                                Chat schat = chat.getValue(Chat.class);
+
+                                                if(schat != null) {
+
+                                                    if (schat.user1 != null && schat.user2 != null) {
+                                                        Log.d("schatuser1", schat.user1);
+                                                        Log.d("schatuser2", schat.user2);
+                                                        Log.d("me", account.getString("email", "no"));
+                                                        Log.d("user", username);
+                                                        if ((schat.user1.equalsIgnoreCase(account.getString("email", "no")) || //это условие не проходит
+                                                                schat.user2.equalsIgnoreCase(account.getString("email", "no"))) &&
+                                                                (schat.user1.equalsIgnoreCase(username) || schat.user2.equalsIgnoreCase(username))) {
+
+                                                            c.id = chat.getKey();
+                                                            Log.d("gosling", chat.getKey());
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }*/
                                         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                                         intent.putExtra("messages", new Message[]{});
-                                        intent.putExtra("id", c.id);
+                                        intent.putExtra("id", key);
                                         startActivity(intent);
                                     }
                                     else {
@@ -85,9 +117,6 @@ public class ProjectActivity extends AppCompatActivity {
                                         intent.putExtra("id", c.id);
                                         startActivity(intent);
                                     }
-
-
-
                                 }
                             }
                         }
