@@ -1,9 +1,10 @@
 package com.example.teamfind;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     public String text;
     public String username;
     public String date;

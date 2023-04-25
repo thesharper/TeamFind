@@ -15,6 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
+
+import java.util.Arrays;
+
 public class ProjectActivity extends AppCompatActivity {
     ActivityProjectBinding binding;
     private DatabaseReference dbr;
@@ -52,14 +56,38 @@ public class ProjectActivity extends AppCompatActivity {
                                     username = sp.author;
                                     Chat c = new Chat(account.getString("email", "no"), username);
                                     c.id = dbr.child("Chats").getKey();
-                                    dbr.child("Chats").push().setValue(c);
+                                    boolean this_chat_exist = false;
 
-                                    Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                                    intent.putExtra("messages", new Message[]{});
-                                    intent.putExtra("id", c.id);
+                                    if(snapshot.child("Chats").exists()) {
+                                        for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
+                                            Chat schat = chat.getValue(Chat.class);
+                                            if (schat.user1 != null && schat.user2 != null) {
+                                                if ((schat.user1.equalsIgnoreCase(c.user1) || schat.user1.equalsIgnoreCase(c.user2)) &&
+                                                        (schat.user2.equalsIgnoreCase(c.user1) || schat.user2.equalsIgnoreCase(c.user2))) {
+                                                    this_chat_exist = true;
+                                                    c = schat;
+
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                    if(!this_chat_exist) {
+                                        dbr.child("Chats").push().setValue(c);
+                                        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                                        intent.putExtra("messages", new Message[]{});
+                                        intent.putExtra("id", c.id);
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                                        intent.putExtra("messages", c.m.toArray());
+                                        intent.putExtra("id", c.id);
+                                        startActivity(intent);
+                                    }
 
 
-                                    startActivity(intent);
+
                                 }
                             }
                         }

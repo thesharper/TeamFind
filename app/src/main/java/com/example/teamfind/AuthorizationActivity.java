@@ -28,13 +28,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         editor.putBoolean("isAuth", false);
         editor.apply();
 
-        binding.logo.setOnClickListener(view -> {
-            FlingAnimation fa = new FlingAnimation(binding.logo, DynamicAnimation.X);
-            fa.setStartVelocity(30f);
-            fa.setFriction(0.3f);
-            fa.start();
 
-        });
 
 
 
@@ -77,6 +71,18 @@ public class AuthorizationActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MainActivity.class));
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+            /*FlingAnimation fa = new FlingAnimation(binding.logo, DynamicAnimation.Y);
+            fa.setStartVelocity(-50f);
+            fa.setFriction(0.3f);
+            fa.start();*/
+
 
     }
 }
