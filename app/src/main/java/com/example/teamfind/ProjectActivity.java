@@ -74,47 +74,35 @@ public class ProjectActivity extends AppCompatActivity {
                                             }
                                         }
                                     }
+
+                                    String name = "";
+                                    if(snapshot.child("Users").exists()){
+                                        for(DataSnapshot suser : snapshot.child("Users").getChildren()){
+                                            User user = suser.getValue(User.class);
+                                            if(user != null) {
+                                                if (user.email.equalsIgnoreCase(username))
+                                                    name = user.name;
+                                            }
+                                        }
+                                    }
+
                                     if(!this_chat_exist) {
-
-                                        //dbr.child("Chats").push().setValue(c); //найти его чтобы получить айди???
-
-
                                         DatabaseReference ref = dbr.child("Chats").push();
                                         String key = ref.getKey();
                                         ref.setValue(c);
 
-                                        /*if(snapshot.child("Chats").exists()) {
-                                            for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
-                                                Chat schat = chat.getValue(Chat.class);
 
-                                                if(schat != null) {
-
-                                                    if (schat.user1 != null && schat.user2 != null) {
-                                                        Log.d("schatuser1", schat.user1);
-                                                        Log.d("schatuser2", schat.user2);
-                                                        Log.d("me", account.getString("email", "no"));
-                                                        Log.d("user", username);
-                                                        if ((schat.user1.equalsIgnoreCase(account.getString("email", "no")) || //это условие не проходит
-                                                                schat.user2.equalsIgnoreCase(account.getString("email", "no"))) &&
-                                                                (schat.user1.equalsIgnoreCase(username) || schat.user2.equalsIgnoreCase(username))) {
-
-                                                            c.id = chat.getKey();
-                                                            Log.d("gosling", chat.getKey());
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-                                        }*/
                                         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                                         intent.putExtra("messages", new Message[]{});
                                         intent.putExtra("id", key);
+                                        intent.putExtra("username", name);
                                         startActivity(intent);
                                     }
                                     else {
                                         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                                         intent.putExtra("messages", c.m.toArray());
                                         intent.putExtra("id", c.id);
+                                        intent.putExtra("username", name);
                                         startActivity(intent);
                                     }
                                 }
