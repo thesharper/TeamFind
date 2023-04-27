@@ -57,6 +57,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         public String description;
         public String author;
         public String date;
+        public String id;
 
         public Category cat1;
         public Category cat2;
@@ -79,6 +80,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             else
                 author = "Неизвестный";
             date = project.date;
+            id = project.DBid;
+
 
             cat1 = project.categories[0];
             cat2 = project.categories[1];

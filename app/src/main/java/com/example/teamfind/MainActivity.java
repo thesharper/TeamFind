@@ -78,9 +78,10 @@ public class MainActivity extends AppCompatActivity {
                     binding.userName.setText(account.getString("first_name", "null") + " " +
                             account.getString("second_name", "null"));
 
-                    projects.clear(); ////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    projects.clear();
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
                         StringProject p = ds.getValue(StringProject.class);
+                        String key = ds.getKey();
 
 
                         User author = new User();
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                                 CategoryList.getByName(p.categories.get(2)),
                                 CategoryList.getByName(p.categories.get(3)),
                                 CategoryList.getByName(p.categories.get(4))}, author, p.date);
+                        project.DBid = key;
+
                         projects.add(project);
                     }
                     ProjectAdapter pa = new ProjectAdapter(getApplicationContext(), projects, new ProjectAdapter.OnProjectClickListener() {
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("cat4d", holder.cat4.drawable_id);
                             intent.putExtra("cat5s", holder.cat5.name);
                             intent.putExtra("cat5d", holder.cat5.drawable_id);
+                            intent.putExtra("id", holder.id);
                             startActivity(intent);
                         }
                     });
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("cat4d", holder.cat4.drawable_id);
                                     intent.putExtra("cat5s", holder.cat5.name);
                                     intent.putExtra("cat5d", holder.cat5.drawable_id);
+                                    intent.putExtra("id", holder.id);
                                     startActivity(intent);
                                 }
                             });
