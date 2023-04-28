@@ -56,6 +56,7 @@ public class MyProjectsActivity extends AppCompatActivity {
 
                     for(DataSnapshot ds : snapshot.child("Projects").getChildren()){
                         StringProject project = ds.getValue(StringProject.class);
+                        String key = ds.getKey();
                         if(project.author.equalsIgnoreCase(account.getString("email", "no"))){
                             Project p = new Project(project.name, project.description, new Category[]{
                                     CategoryList.getByName(project.categories.get(0)),
@@ -63,6 +64,8 @@ public class MyProjectsActivity extends AppCompatActivity {
                                     CategoryList.getByName(project.categories.get(2)),
                                     CategoryList.getByName(project.categories.get(3)),
                                     CategoryList.getByName(project.categories.get(4))}, us, project.date);
+                            p.DBid = key;
+                            p.author_id = project.author;
                             projects.add(p);
                         }
                     }
@@ -85,6 +88,8 @@ public class MyProjectsActivity extends AppCompatActivity {
                             intent.putExtra("cat4d", holder.cat4.drawable_id);
                             intent.putExtra("cat5s", holder.cat5.name);
                             intent.putExtra("cat5d", holder.cat5.drawable_id);
+                            intent.putExtra("id", holder.id);
+                            intent.putExtra("author_id", holder.author_id);
                             startActivity(intent);
                         }
                     });

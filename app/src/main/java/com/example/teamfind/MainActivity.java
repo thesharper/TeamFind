@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                 CategoryList.getByName(p.categories.get(3)),
                                 CategoryList.getByName(p.categories.get(4))}, author, p.date);
                         project.DBid = key;
+                        project.author_id = p.author;
 
                         projects.add(project);
                     }
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("cat5s", holder.cat5.name);
                             intent.putExtra("cat5d", holder.cat5.drawable_id);
                             intent.putExtra("id", holder.id);
+                            intent.putExtra("author_id", holder.author_id);
                             startActivity(intent);
                         }
                     });

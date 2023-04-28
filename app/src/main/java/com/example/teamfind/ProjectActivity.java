@@ -136,7 +136,7 @@ public class ProjectActivity extends AppCompatActivity {
         binding = ActivityProjectBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if((account.getString("first_name", "") + " " + account.getString("second_name", "")).equalsIgnoreCase(getIntent().getExtras().get("author").toString())) {
+        if(account.getString("email", "no").equalsIgnoreCase(getIntent().getExtras().getString("author_id"))) {
             binding.respond.setText("Удалить проект");
 
             binding.respond.setOnClickListener(view -> {
