@@ -9,22 +9,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="6dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Новый проект"
+            android:text="@string/text_new_project"
+
             android:textSize="34dp"
             android:textColor="@color/black"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Введите имя"
+            android:hint="@string/enter_first_name"
             android:id="@+id/name"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Описание проекта"
+            android:hint="@string/project_desc"
             android:id="@+id/description"
             android:inputType="textMultiLine"
             android:maxLines="200"/>
@@ -42,14 +44,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/black"
-                android:text="Выбранные категории:"
+                android:text="@string/selected_categories"
                 android:paddingBottom="16dp"/>
         </com.nex3z.flowlayout.FlowLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выберите категории (не более 5)"
+            android:text="@string/select_cats"
             android:textColor="@color/black"
             android:textSize="16dp"/>
 
@@ -65,7 +67,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добавить"
+            android:text="@string/add"
             android:id="@+id/add"/>
 
 
@@ -96,9 +98,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Арсений Кривецкий"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:id="@+id/user_name"/>
 
             </LinearLayout>
@@ -107,7 +108,7 @@
         <Button
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:text="Поиск проектов"
+            android:text="@string/projects"
             android:id="@+id/mainPage"
             android:background="@color/teal_700"/>
         <View
@@ -117,7 +118,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Мои проекты"
+            android:text="@string/my_projects"
             android:id="@+id/my_projects"
             android:background="@color/teal_700"/>
         <View
@@ -127,7 +128,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Создать проект"
+            android:text="@string/new_project"
             android:id="@+id/new_project"
             android:background="@color/teal_700" />
         <View
@@ -137,7 +138,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Чаты"
+            android:text="@string/chats"
             android:id="@+id/chats"
             android:background="@color/teal_700"/>
         <View
@@ -147,7 +148,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Настройки"
+            android:text="@string/settings"
             android:background="@color/teal_700"/>
         <View
             android:layout_width="match_parent"
@@ -156,7 +157,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="О приложении"
+            android:text="@string/about"
             android:id="@+id/about"
             android:background="@color/teal_700"/>
         <View
@@ -166,7 +167,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выход из аккаунта"
+            android:text="@string/exit"
             android:id="@+id/exit"
             android:background="@color/teal_700"/>
 

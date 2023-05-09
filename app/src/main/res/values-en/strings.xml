@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TeamFind</string>
+    <string name="hello">Hello!</string>
+    <string name="auth_or_reg">Login or register::</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_second_name">Enter second name</string>
+    <string name="enter_login">Enter login</string>
+    <string name="enter_pass">Enter password</string>
+    <string name="reg">Register</string>
+    <string name="auth">Log in</string>
+    <string name="search">Search</string>
+    <string name="projects">Project search</string>
+    <string name="my_projects">My projects</string>
+    <string name="new_project">New project</string>
+    <string name="chats">Chats</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="exit">Log out</string>
+    <string name="text_new_project">New project</string>
+    <string name="project_desc">Project description</string>
+    <string name="selected_categories">Selected categories:</string>
+    <string name="select_cats">Select categories (max 5)</string>
+    <string name="add">Add</string>
+    <string name="respond">Respond</string>
+
+</resources>

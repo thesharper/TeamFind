@@ -54,7 +54,7 @@
         <Button
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:text="Поиск проектов"
+            android:text="@string/projects"
             android:id="@+id/mainPage"
             android:background="@color/teal_700"/>
         <View
@@ -64,7 +64,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Мои проекты"
+            android:text="@string/my_projects"
             android:id="@+id/my_projects"
             android:background="@color/teal_700"/>
         <View
@@ -74,7 +74,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Создать проект"
+            android:text="@string/new_project"
             android:id="@+id/new_project"
             android:background="@color/teal_700" />
         <View
@@ -84,7 +84,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Чаты"
+            android:text="@string/chats"
             android:id="@+id/chats"
             android:background="@color/teal_700"/>
         <View
@@ -94,7 +94,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Настройки"
+            android:text="@string/settings"
             android:background="@color/teal_700"/>
         <View
             android:layout_width="match_parent"
@@ -103,7 +103,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="О приложении"
+            android:text="@string/about"
             android:id="@+id/about"
             android:background="@color/teal_700"/>
         <View
@@ -113,7 +113,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выход из аккаунта"
+            android:text="@string/exit"
             android:id="@+id/exit"
             android:background="@color/teal_700"/>
 

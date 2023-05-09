@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">TeamFind</string>
+    <string name="hello">Здравствуйте!</string>
+    <string name="auth_or_reg">Войдите или зарегистрируйтесь:</string>
+    <string name="enter_first_name">Введите имя</string>
+    <string name="enter_second_name">Введите фамилию</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_pass">Введите пароль</string>
+    <string name="reg">Зарегистрироваться</string>
+    <string name="auth">Войти</string>
+    <string name="search">Поиск</string>
+    <string name="projects">Поиск проектов</string>
+    <string name="my_projects">Мои проекты</string>
+    <string name="new_project">Создать проект</string>
+    <string name="chats">Чаты</string>
+    <string name="settings">Настройки</string>
+    <string name="about">О приложении</string>
+    <string name="exit">Выход из аккаунта</string>
+    <string name="text_new_project">Новый проект</string>
+    <string name="project_desc">Описание проекта</string>
+    <string name="selected_categories">Выбранные категории:</string>
+    <string name="select_cats">Выберите категории (не более 5)</string>
+    <string name="add">Добавить</string>
+    <string name="respond">Отозваться</string>
+
 </resources>

@@ -29,7 +29,10 @@ public class AuthorizationActivity extends AppCompatActivity {
         editor.apply();
 
 
-
+        FlingAnimation flingAnimation = new FlingAnimation(binding.logo, DynamicAnimation.Y);
+        flingAnimation.setStartVelocity(500f);
+        flingAnimation.setFriction(0.3f);
+        flingAnimation.start();
 
 
 

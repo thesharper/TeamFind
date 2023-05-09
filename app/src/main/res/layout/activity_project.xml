@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ProjectActivity"
     android:background="#deecfa"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginHorizontal="6dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +81,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Отозваться"
+        android:text="@string/respond"
         android:id="@+id/respond"/>
 
 </LinearLayout>
