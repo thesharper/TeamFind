@@ -1,18 +1,4 @@
-package com.example.teamfind;
-
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
+package com.example.teamfind.data;
 
 public class User {
     public String first_name;
@@ -30,6 +16,4 @@ public class User {
         this.name = first_name + " " + second_name;
     }
     public User(){}
-
-
 }

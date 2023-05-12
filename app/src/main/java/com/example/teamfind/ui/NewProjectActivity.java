@@ -1,8 +1,7 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
-import static com.example.teamfind.MainActivity.account;
+import static com.example.teamfind.ui.MainActivity.account;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.teamfind.data.Category;
+import com.example.teamfind.data.CategoryList;
+import com.example.teamfind.data.Project;
+import com.example.teamfind.data.User;
 import com.example.teamfind.databinding.ActivityNewProjectBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +68,8 @@ public class NewProjectActivity extends AppCompatActivity {
             Project project = new Project(binding.name.getText().toString(), binding.description.getText().toString(), selected_categories, new User(account.getString("user_name", "").split(" ")[0],
                     account.getString("user_name", "").split(" ")[1], "", account.getString("email", "")));
             project.save();
+            Toast.makeText(this, "Проект сохранен", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
     }
     void init(){

@@ -1,4 +1,4 @@
-package com.example.teamfind;
+package com.example.teamfind.data;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

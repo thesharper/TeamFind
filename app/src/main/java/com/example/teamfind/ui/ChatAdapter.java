@@ -1,4 +1,4 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.teamfind.data.Chat;
+import com.example.teamfind.data.Message;
 import com.example.teamfind.databinding.FragmentChatBinding;
 
 import java.util.List;

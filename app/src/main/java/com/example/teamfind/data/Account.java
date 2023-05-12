@@ -1,4 +1,4 @@
-package com.example.teamfind;
+package com.example.teamfind.data;
 
 import android.content.Intent;
 import android.net.Uri;

@@ -1,8 +1,11 @@
-package com.example.teamfind;
+package com.example.teamfind.data;
+
+import com.example.teamfind.R;
+import com.example.teamfind.data.Category;
 
 public class CategoryList {
     public static Category[] list;
-    static Category nullCategory = new Category("", 0);
+    public static Category nullCategory = new Category("", 0);
     static{
         list = new Category[38];
         list[0] = new Category("ИИ_и_ML", R.drawable.red);
@@ -45,7 +48,7 @@ public class CategoryList {
         list[37] = new Category("3D-моделирование", R.drawable.green);
 
     }
-    static Category getByName(String name){
+    public static Category getByName(String name){
         for (int i = 0; i < list.length; i++) {
             if(list[i].name.equalsIgnoreCase(name)) return list[i];
         }

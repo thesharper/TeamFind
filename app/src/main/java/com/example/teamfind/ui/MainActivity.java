@@ -1,4 +1,4 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +8,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Display;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
+import com.example.teamfind.data.Account;
+import com.example.teamfind.data.Category;
+import com.example.teamfind.data.CategoryList;
+import com.example.teamfind.data.Project;
+import com.example.teamfind.data.StringProject;
+import com.example.teamfind.data.User;
 import com.example.teamfind.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,12 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;

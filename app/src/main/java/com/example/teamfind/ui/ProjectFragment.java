@@ -1,18 +1,17 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.teamfind.data.Category;
+import com.example.teamfind.data.Project;
 import com.example.teamfind.databinding.FragmentProjectBinding;
-
-import java.util.Date;
 
 public class ProjectFragment extends Fragment {
     FragmentProjectBinding binding;

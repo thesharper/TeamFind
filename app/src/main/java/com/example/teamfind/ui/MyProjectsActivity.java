@@ -1,6 +1,6 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
-import static com.example.teamfind.MainActivity.account;
+import static com.example.teamfind.ui.MainActivity.account;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.teamfind.data.Category;
+import com.example.teamfind.data.CategoryList;
+import com.example.teamfind.data.Project;
+import com.example.teamfind.data.StringProject;
+import com.example.teamfind.data.User;
 import com.example.teamfind.databinding.ActivityMyProjectsBinding;
-import com.example.teamfind.databinding.ActivityProjectBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -1,14 +1,15 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.teamfind.data.Category;
+import com.example.teamfind.data.Project;
 import com.example.teamfind.databinding.FragmentProjectBinding;
 
 import java.util.List;

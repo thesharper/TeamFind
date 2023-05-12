@@ -1,6 +1,5 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FlingAnimation;
@@ -9,12 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.teamfind.data.Account;
+import com.example.teamfind.data.User;
 import com.example.teamfind.databinding.ActivityAuthorizationBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class AuthorizationActivity extends AppCompatActivity {
     ActivityAuthorizationBinding binding;
@@ -29,11 +27,12 @@ public class AuthorizationActivity extends AppCompatActivity {
         editor.apply();
 
 
-        FlingAnimation flingAnimation = new FlingAnimation(binding.logo, DynamicAnimation.Y);
-        flingAnimation.setStartVelocity(500f);
-        flingAnimation.setFriction(0.3f);
-        flingAnimation.start();
-
+        if(binding.logo != null) {
+            FlingAnimation flingAnimation = new FlingAnimation(binding.logo, DynamicAnimation.Y);
+            flingAnimation.setStartVelocity(500f);
+            flingAnimation.setFriction(0.3f);
+            flingAnimation.start();
+        }
 
 
         binding.login.setOnClickListener(view -> {

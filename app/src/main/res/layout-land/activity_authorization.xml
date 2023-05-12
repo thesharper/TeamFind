@@ -11,13 +11,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="46sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/auth_or_reg"
         android:textSize="24sp"
         android:textColor="@color/black"
@@ -49,40 +42,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/reg"
             android:id="@+id/reg"
             android:background="@color/teal_700"
-            android:layout_margin="6dp"/>
+            android:layout_margin="6dp"
+            app:layout_constraintLeft_toRightOf="@id/login"
+            android:layout_weight="1"/>
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auth"
-            android:gravity="center"
-            android:layout_gravity="center"
             android:id="@+id/login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
             android:background="@color/teal_700"
-            android:layout_margin="8dp"/>
+            android:gravity="center"
+            android:text="@string/auth"
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="@id/reg"/>
+
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="bottom"
-        android:layout_gravity="center"
-        android:layout_weight="1">
-        <ImageView
-            android:layout_width="152dp"
-            android:layout_height="152dp"
-            android:id="@+id/logo"
-            android:layout_margin="28dp"
-            android:background="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+
 
 </LinearLayout>

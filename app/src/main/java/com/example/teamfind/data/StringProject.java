@@ -1,7 +1,8 @@
-package com.example.teamfind;
+package com.example.teamfind.data;
+
+import com.example.teamfind.data.Project;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //класс, экземпляр которого хранит в себе информацию о конкретном экземпляре Project

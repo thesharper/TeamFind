@@ -1,15 +1,12 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 
+import com.example.teamfind.data.Message;
 import com.example.teamfind.databinding.ActivityChatBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

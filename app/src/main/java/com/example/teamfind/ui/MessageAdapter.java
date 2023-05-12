@@ -1,9 +1,6 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
 import android.content.Context;
-import android.content.res.Configuration;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.teamfind.data.Message;
 import com.example.teamfind.databinding.FragmentMessageBinding;
 import com.example.teamfind.databinding.FragmentMyMessageBinding;
-import com.example.teamfind.databinding.FragmentProjectBinding;
 
 import java.util.List;
 

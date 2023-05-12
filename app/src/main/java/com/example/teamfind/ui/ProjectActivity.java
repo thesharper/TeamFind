@@ -1,6 +1,6 @@
-package com.example.teamfind;
+package com.example.teamfind.ui;
 
-import static com.example.teamfind.MainActivity.account;
+import static com.example.teamfind.ui.MainActivity.account;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,16 +10,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.teamfind.data.Chat;
+import com.example.teamfind.data.Message;
+import com.example.teamfind.data.StringProject;
+import com.example.teamfind.data.User;
 import com.example.teamfind.databinding.ActivityProjectBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.Serializable;
-
-import java.util.Arrays;
 
 public class ProjectActivity extends AppCompatActivity {
     ActivityProjectBinding binding;
