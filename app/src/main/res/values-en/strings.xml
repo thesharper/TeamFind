@@ -22,5 +22,6 @@
     <string name="select_cats">Select categories (max 5)</string>
     <string name="add">Add</string>
     <string name="respond">Respond</string>
+    <string name="get_back" translatable="false">Back</string>
 
 </resources>

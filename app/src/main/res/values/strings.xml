@@ -22,5 +22,6 @@
     <string name="select_cats">Выберите категории (не более 5)</string>
     <string name="add">Добавить</string>
     <string name="respond">Отозваться</string>
+    <string name="get_back" translatable="false">Назад</string>
 
 </resources>

@@ -146,6 +146,8 @@ public class ProjectActivity extends AppCompatActivity {
             });
         }
 
+        binding.back.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
+
         binding.name.setText(getIntent().getExtras().get("name").toString());
         binding.description.setText(getIntent().getExtras().get("description").toString());
         binding.author.setText(getIntent().getExtras().get("author").toString());

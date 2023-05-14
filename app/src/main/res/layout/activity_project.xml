@@ -83,5 +83,10 @@
         android:layout_height="wrap_content"
         android:text="@string/respond"
         android:id="@+id/respond"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:id="@+id/back"/>
 
 </LinearLayout>
