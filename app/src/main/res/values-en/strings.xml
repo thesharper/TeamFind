@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeamFind</string>
+    <string name="app_name">DreamTeam</string>
     <string name="hello">Hello!</string>
     <string name="auth_or_reg">Login or register::</string>
     <string name="enter_first_name">Enter first name</string>

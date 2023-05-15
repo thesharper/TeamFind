@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeamFind</string>
+    <string name="app_name">DreamTeam</string>
     <string name="hello">Здравствуйте!</string>
     <string name="auth_or_reg">Войдите или зарегистрируйтесь:</string>
     <string name="enter_first_name">Введите имя</string>
