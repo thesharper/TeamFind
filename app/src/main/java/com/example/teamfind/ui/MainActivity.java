@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.teamfind.data.Account;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!account.getBoolean("isAuth", false))
             startActivity(new Intent(this, AuthorizationActivity.class));
+
 
 
         ValueEventListener v = new ValueEventListener() {
@@ -198,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         init();
+        binding.opensidebar.setOnClickListener(view -> {
+            binding.drawer.open();
+        });
 
     }
 
