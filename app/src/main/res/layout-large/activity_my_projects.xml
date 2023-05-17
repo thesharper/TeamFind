@@ -5,24 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#deecfa"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.MyProjectsActivity"
     android:id="@+id/drawer">
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/search"
-        android:id="@+id/search"/>
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/list"
 
@@ -30,18 +21,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-    </LinearLayout>
         <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_baseline_menu_24"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/ic_baseline_menu_72"
             android:layout_alignParentBottom="true"
             android:layout_margin="20dp"
-            android:background="@drawable/round"
-            android:id="@+id/opensidebar"/>
-    </RelativeLayout>
+            android:background="@drawable/round_big"
+            android:id="@+id/opensidebar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="500dp"
         android:layout_height="match_parent"
         android:id="@+id/left_drawer"
         android:layout_gravity="start"
@@ -51,14 +43,14 @@
 
         <LinearLayout
             android:background="@color/teal_700"
-            android:layout_width="280dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/ll">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_person_24" />
+                android:src="@drawable/person_52"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -67,17 +59,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="52dp"
                     android:id="@+id/user_name"/>
 
             </LinearLayout>
         </LinearLayout>
 
         <Button
-            android:layout_width="280dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:text="@string/projects"
-            android:background="@color/teal_700"/>
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
@@ -87,7 +80,8 @@
             android:layout_height="wrap_content"
             android:text="@string/my_projects"
             android:id="@+id/my_projects"
-            android:background="@color/teal_700"/>
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
@@ -97,7 +91,8 @@
             android:layout_height="wrap_content"
             android:text="@string/new_project"
             android:id="@+id/new_project"
-            android:background="@color/teal_700" />
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
@@ -107,16 +102,8 @@
             android:layout_height="wrap_content"
             android:text="@string/chats"
             android:id="@+id/chats"
-            android:background="@color/teal_700"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#012c42" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:background="@color/teal_700"/>
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
@@ -126,7 +113,8 @@
             android:layout_height="wrap_content"
             android:text="@string/about"
             android:id="@+id/about"
-            android:background="@color/teal_700"/>
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
@@ -136,7 +124,8 @@
             android:layout_height="wrap_content"
             android:text="@string/exit"
             android:id="@+id/exit"
-            android:background="@color/teal_700"/>
+            android:background="@color/teal_700"
+            android:textSize="42dp"/>
 
     </LinearLayout>
 

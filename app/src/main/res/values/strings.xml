@@ -22,6 +22,11 @@
     <string name="select_cats">Выберите категории (не более 5)</string>
     <string name="add">Добавить</string>
     <string name="respond">Отозваться</string>
-    <string name="get_back" translatable="false">Назад</string>
+    <string name="get_back">Назад</string>
+    <string name="incprrect_data">Неверные данные!</string>
+    <string name="no_more">Больше нельзя!</string>
+    <string name="proj_deleted">Проект удален</string>
+    <string name="author">Автор: </string>
+    <string name="date">"Дата: "</string>
 
 </resources>

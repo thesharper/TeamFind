@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.teamfind.R;
 import com.example.teamfind.data.Account;
 import com.example.teamfind.data.Category;
 import com.example.teamfind.data.CategoryList;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if(User.thisUser == null){ //не авторизован
-                        Toast.makeText(getApplicationContext(), "Неверные данные!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.incprrect_data, Toast.LENGTH_SHORT).show();
                         editor.putBoolean("isAuth", false);
                         startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
                     }
@@ -202,9 +203,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         init();
-        binding.opensidebar.setOnClickListener(view -> {
-            binding.drawer.open();
-        });
+
 
     }
 
@@ -234,6 +233,9 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
+        });
+        binding.opensidebar.setOnClickListener(view -> {
+            binding.drawer.open();
         });
     }
 }

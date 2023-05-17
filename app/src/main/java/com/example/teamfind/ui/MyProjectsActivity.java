@@ -141,5 +141,8 @@ public class MyProjectsActivity extends AppCompatActivity {
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
+        binding.opensidebar.setOnClickListener(view -> {
+            binding.drawer.open();
+        });
     }
 }

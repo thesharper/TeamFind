@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.teamfind.R;
 import com.example.teamfind.data.Chat;
 import com.example.teamfind.data.Message;
 import com.example.teamfind.data.StringProject;
@@ -141,7 +142,7 @@ public class ProjectActivity extends AppCompatActivity {
 
             binding.respond.setOnClickListener(view -> {
                 dbr.child("Projects").child(getIntent().getExtras().getString("id")).removeValue();
-                Toast.makeText(getApplicationContext(),"Проект удален", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.proj_deleted, Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
             });
         }

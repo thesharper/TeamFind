@@ -22,6 +22,11 @@
     <string name="select_cats">Select categories (max 5)</string>
     <string name="add">Add</string>
     <string name="respond">Respond</string>
-    <string name="get_back" translatable="false">Back</string>
+    <string name="incprrect_data">Incorrect data!</string>
+    <string name="no_more">No more!</string>
+    <string name="proj_deleted">Project deleted</string>
+    <string name="get_back">Back</string>
+    <string name="author">Author: </string>
+    <string name="date">"Date: "</string>
 
 </resources>

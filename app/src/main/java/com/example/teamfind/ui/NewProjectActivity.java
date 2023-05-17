@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.teamfind.R;
 import com.example.teamfind.data.Category;
 import com.example.teamfind.data.CategoryList;
 import com.example.teamfind.data.Project;
@@ -40,19 +42,25 @@ public class NewProjectActivity extends AppCompatActivity {
         for (int i = 0; i < CategoryList.list.length; i++) {
             TextView tv = new TextView(this);
             tv.setText(CategoryList.list[i].name);
+            if(CategoryList.list[i].drawable_id == R.drawable.blue)
+                tv.setTextColor(Color.WHITE);
             tv.setBackgroundResource(CategoryList.list[i].drawable_id);
             tv.setTextSize(20);
             tv.setOnClickListener(view -> {
-                if(selected_categories.size() < 5) {
-                    selected_categories.add(CategoryList.getByName(tv.getText().toString()));
-                    if (tv.getParent() != null) {
-                        ((ViewGroup) tv.getParent()).removeView(tv);
+                    if (selected_categories.size() < 5) {
+                        selected_categories.add(CategoryList.getByName(tv.getText().toString()));
+                        if (tv.getParent() != null) {
+                            ((ViewGroup) tv.getParent()).removeView(tv);
+                        }
+                        binding.selectedLayout.addView(tv);
+                        tv.setOnClickListener(view1 -> {
+                            binding.selectedLayout.removeView(tv);
+                            binding.flowLayout.addView(tv);
+                        });
+                    } else {
+                        Toast.makeText(this, R.string.no_more, Toast.LENGTH_SHORT).show();
                     }
-                    binding.selectedLayout.addView(tv);
-                }
-                else{
-                    Toast.makeText(this, "Больше нельзя!", Toast.LENGTH_SHORT).show();
-                }
+
             });
             binding.flowLayout.addView(tv);
         }
@@ -103,6 +111,9 @@ public class NewProjectActivity extends AppCompatActivity {
         });
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
+        });
+        binding.opensidebar.setOnClickListener(view -> {
+            binding.drawer.open();
         });
     }
 }

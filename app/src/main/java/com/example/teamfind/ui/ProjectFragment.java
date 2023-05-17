@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.teamfind.R;
 import com.example.teamfind.data.Category;
 import com.example.teamfind.data.Project;
 import com.example.teamfind.databinding.FragmentProjectBinding;
@@ -30,8 +31,8 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProjectBinding.inflate(inflater, container, false);
         binding.name.setText(name);
-        binding.author.setText("Автор: " + author);
-        binding.date.setText("Дата: " + date);
+        binding.author.setText(R.string.author + author);
+        binding.date.setText(R.string.date + date);
 
         switch (categories.length) {
             case 1:

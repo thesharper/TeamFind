@@ -26,15 +26,6 @@ public class AuthorizationActivity extends AppCompatActivity {
         editor.putBoolean("isAuth", false);
         editor.apply();
 
-
-        if(binding.logo != null) {
-            FlingAnimation flingAnimation = new FlingAnimation(binding.logo, DynamicAnimation.Y);
-            flingAnimation.setStartVelocity(500f);
-            flingAnimation.setFriction(0.3f);
-            flingAnimation.start();
-        }
-
-
         binding.login.setOnClickListener(view -> {
             if(!binding.email.getText().toString().equalsIgnoreCase( "") && !binding.password.getText().toString().equalsIgnoreCase("")){
                 editor.putString("email", binding.email.getText().toString());

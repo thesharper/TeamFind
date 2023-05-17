@@ -5,12 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#deecfa"
-    tools:context=".ui.NewProjectActivity">
+    tools:context=".ui.NewProjectActivity"
+    android:id="@+id/drawer">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginHorizontal="6dp">
+        android:layout_marginHorizontal="6dp"
+        app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,15 +39,14 @@
         <com.nex3z.flowlayout.FlowLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:flChildSpacing="auto"
+            app:flChildSpacing="4dp"
             app:flChildSpacingForLastRow="align"
-            app:flRowSpacing="8dp"
             android:id="@+id/selected_layout"
             app:flMinChildSpacing="6dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 android:text="@string/selected_categories"
                 android:paddingBottom="16dp"/>
@@ -72,6 +76,17 @@
 
 
     </LinearLayout>
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_baseline_menu_24"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/round"
+            android:id="@+id/opensidebar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"
