@@ -90,11 +90,8 @@ public class ChatsActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-
                     binding.list.setAdapter(ca);
                 }
-
-
             }
 
             @Override

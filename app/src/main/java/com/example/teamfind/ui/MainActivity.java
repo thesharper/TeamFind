@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference dbr;
     private List<Project> projects = new ArrayList<>();
     public static SharedPreferences account;
+    public static SharedPreferences user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +63,12 @@ public class MainActivity extends AppCompatActivity {
                                     cu = dsu.getValue(User.class);
                                     if (cu.email.equalsIgnoreCase(account.getString("email", ""))) {
                                         User.thisUser = cu;
-                                        //binding.userName.setText(cu.name);
                                     }
                                 }
                             }
                         }
                     }
-                    if(User.thisUser == null){ //не авторизован
+                    if(User.thisUser == null){
                         Toast.makeText(getApplicationContext(), R.string.incprrect_data, Toast.LENGTH_SHORT).show();
                         editor.putBoolean("isAuth", false);
                         startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
@@ -182,9 +183,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-
-
-                    //binding.userName.setText(cu.name);
                     editor.putString("user_name", cu.name);
 
                     editor.apply();
@@ -209,7 +207,11 @@ public class MainActivity extends AppCompatActivity {
 
     void init(){
 
-        binding.userName.setText(account.getString("user_name", "not stated"));
+        binding.userName.setText(account.getString("first_name", "null") + " " +
+                account.getString("second_name", "null"));
+
+
+        Log.d("account", account.getString("first_name", "fdghf"));
 
         binding.exit.setOnClickListener(view -> {
             SharedPreferences.Editor editor = account.edit();
