@@ -14,11 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_search_24"
+                android:layout_gravity="center"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search"
-            android:id="@+id/search"/>
+            android:id="@+id/search"
+            android:textColorHint="@color/black"/>
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
 
             android:layout_width="match_parent"
