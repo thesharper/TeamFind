@@ -13,23 +13,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/name"
         android:textSize="28dp"
+        android:layout_marginBottom="8dp"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description"
+        android:layout_marginStart="4dp"
         android:textSize="18dp"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/author"
+        android:layout_marginStart="4dp"
         android:textSize="18dp"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/date"
+        android:layout_marginStart="4dp"
         android:textSize="24dp"
         android:textColor="@color/black"/>
     <LinearLayout
@@ -82,11 +86,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respond"
-        android:id="@+id/respond"/>
+        android:id="@+id/respond"
+        android:layout_marginHorizontal="6dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Назад"
-        android:id="@+id/back"/>
+        android:text="@string/get_back"
+        android:id="@+id/back"
+        android:layout_marginHorizontal="6dp"/>
 
 </LinearLayout>

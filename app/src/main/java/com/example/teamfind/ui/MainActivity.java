@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         account = getSharedPreferences("Account", MODE_PRIVATE);
         SharedPreferences.Editor editor = account.edit();
         dbr = FirebaseDatabase.getInstance().getReference();
@@ -47,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         if(!account.getBoolean("isAuth", false))
             startActivity(new Intent(this, AuthorizationActivity.class));
 
-
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        super.onCreate(savedInstanceState);
+        setContentView(binding.getRoot());
+        init();
 
         ValueEventListener v = new ValueEventListener() {
             @Override
@@ -197,12 +203,9 @@ public class MainActivity extends AppCompatActivity {
         };
         dbr.addValueEventListener(v);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        super.onCreate(savedInstanceState);
-        setContentView(binding.getRoot());
+
+
         init();
-
-
     }
 
     void init(){
@@ -217,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = account.edit();
             editor.putString("password", "");
             editor.putString("email", "");
+            editor.putString("first_name", "");
+            editor.putString("second_name", "");
             editor.putBoolean("isAuth", false);
             editor.apply();
             startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
