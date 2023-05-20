@@ -106,9 +106,7 @@ public class NewProjectActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
         });
 
-        binding.about.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
-        });
+
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
         });

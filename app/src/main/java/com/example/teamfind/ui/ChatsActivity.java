@@ -133,9 +133,6 @@ public class ChatsActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
         });
 
-        binding.about.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), ChatActivity.class));
-        });
 
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
