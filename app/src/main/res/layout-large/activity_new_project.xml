@@ -169,17 +169,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about"
-            android:id="@+id/about"
-            android:background="@color/teal_700"
-            android:textSize="42dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#012c42" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/exit"
             android:id="@+id/exit"
             android:background="@color/teal_700"
