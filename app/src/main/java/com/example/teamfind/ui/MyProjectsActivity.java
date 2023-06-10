@@ -112,8 +112,7 @@ public class MyProjectsActivity extends AppCompatActivity {
     }
     void init(){
 
-        binding.userName.setText(account.getString("first_name", "null") + " " +
-                account.getString("second_name", "null"));
+
 
         binding.exit.setOnClickListener(view -> {
             SharedPreferences.Editor editor = account.edit();
@@ -139,8 +138,6 @@ public class MyProjectsActivity extends AppCompatActivity {
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
-        binding.opensidebar.setOnClickListener(view -> {
-            binding.drawer.open();
-        });
+
     }
 }

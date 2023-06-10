@@ -82,9 +82,6 @@ public class NewProjectActivity extends AppCompatActivity {
     }
     void init(){
 
-        binding.userName.setText(account.getString("first_name", "null") + " " +
-                account.getString("second_name", "null"));
-
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
@@ -109,9 +106,6 @@ public class NewProjectActivity extends AppCompatActivity {
 
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
-        });
-        binding.opensidebar.setOnClickListener(view -> {
-            binding.drawer.open();
         });
     }
 }

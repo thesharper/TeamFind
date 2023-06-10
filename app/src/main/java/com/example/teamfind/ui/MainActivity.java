@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
                         editor.putBoolean("isAuth", true);
                     }
 
-                    binding.userName.setText(account.getString("first_name", "null") + " " +
-                            account.getString("second_name", "null"));
 
                     projects.clear();
                     for (DataSnapshot ds : snapshot.child("Projects").getChildren()) {
@@ -207,8 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
     void init(){
 
-        binding.userName.setText(account.getString("first_name", "null") + " " +
-                account.getString("second_name", "null"));
+
 
 
         Log.d("account", account.getString("first_name", "fdghf"));
@@ -233,9 +230,7 @@ public class MainActivity extends AppCompatActivity {
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
         });
-        binding.opensidebar.setOnClickListener(view -> {
-            binding.drawer.open();
-        });
+
     }
 }
 
