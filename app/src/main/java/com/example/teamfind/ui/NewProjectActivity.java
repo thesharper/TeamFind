@@ -90,6 +90,8 @@ public class NewProjectActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = account.edit();
             editor.putString("password", "");
             editor.putString("email", "");
+            editor.putString("first_name", "");
+            editor.putString("second_name", "");
             editor.putBoolean("isAuth", false);
             editor.apply();
             startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
