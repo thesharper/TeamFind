@@ -1,8 +1,10 @@
 package com.example.teamfind.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -214,14 +216,21 @@ public class MainActivity extends AppCompatActivity {
         Log.d("account", account.getString("first_name", "fdghf"));
 
         binding.exit.setOnClickListener(view -> {
-            SharedPreferences.Editor editor = account.edit();
-            editor.putString("password", "");
-            editor.putString("email", "");
-            editor.putString("first_name", "");
-            editor.putString("second_name", "");
-            editor.putBoolean("isAuth", false);
-            editor.apply();
-            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+            new AlertDialog.Builder(this)
+                    .setMessage("Вы действительно хотите выйти из аккаунта?")
+                    .setCancelable(false)
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            SharedPreferences.Editor editor = account.edit();
+                            editor.putString("password", "");
+                            editor.putString("email", "");
+                            editor.putString("first_name", "");
+                            editor.putString("second_name", "");
+                            editor.putBoolean("isAuth", false);
+                            editor.apply();
+                            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+                        }
+                    }).setNegativeButton("Нет", null).show();
         });
 
         binding.myProjects.setOnClickListener(view -> {

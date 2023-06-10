@@ -143,23 +143,28 @@ public class ProjectActivity extends AppCompatActivity {
         binding.author.setText(getIntent().getExtras().get("author").toString());
         binding.date.setText(getIntent().getExtras().get("date").toString());
 
-        if((int)getIntent().getExtras().get("cat1d") == R.drawable.blue)
+        if((int)getIntent().getExtras().get("cat1d") == R.drawable.blue || (int)getIntent().getExtras().get("cat1d") == R.drawable.violet
+                || (int)getIntent().getExtras().get("cat1d") == R.drawable.redd)
             binding.cat1.setTextColor(Color.WHITE);
         binding.cat1.setText(getIntent().getExtras().get("cat1s").toString());
         binding.cat1.setBackgroundResource((int)getIntent().getExtras().get("cat1d"));
-        if((int)getIntent().getExtras().get("cat2d") == R.drawable.blue)
+        if((int)getIntent().getExtras().get("cat2d") == R.drawable.blue || (int)getIntent().getExtras().get("cat2d") == R.drawable.violet
+                || (int)getIntent().getExtras().get("cat2d") == R.drawable.redd)
             binding.cat2.setTextColor(Color.WHITE);
         binding.cat2.setText(getIntent().getExtras().get("cat2s").toString());
         binding.cat2.setBackgroundResource((int)getIntent().getExtras().get("cat2d"));
-        if((int)getIntent().getExtras().get("cat3d") == R.drawable.blue)
+        if((int)getIntent().getExtras().get("cat3d") == R.drawable.blue || (int)getIntent().getExtras().get("cat3d") == R.drawable.violet
+                || (int)getIntent().getExtras().get("cat3d") == R.drawable.redd)
             binding.cat3.setTextColor(Color.WHITE);
         binding.cat3.setText(getIntent().getExtras().get("cat3s").toString());
         binding.cat3.setBackgroundResource((int)getIntent().getExtras().get("cat3d"));
-        if((int)getIntent().getExtras().get("cat4d") == R.drawable.blue)
+        if((int)getIntent().getExtras().get("cat4d") == R.drawable.blue || (int)getIntent().getExtras().get("cat4d") == R.drawable.violet
+                || (int)getIntent().getExtras().get("cat4d") == R.drawable.redd)
             binding.cat4.setTextColor(Color.WHITE);
         binding.cat4.setText(getIntent().getExtras().get("cat4s").toString());
         binding.cat4.setBackgroundResource((int)getIntent().getExtras().get("cat4d"));
-        if((int)getIntent().getExtras().get("cat5d") == R.drawable.blue)
+        if((int)getIntent().getExtras().get("cat5d") == R.drawable.blue || (int)getIntent().getExtras().get("cat5d") == R.drawable.violet
+                || (int)getIntent().getExtras().get("cat5d") == R.drawable.redd)
             binding.cat5.setTextColor(Color.WHITE);
         binding.cat5.setText(getIntent().getExtras().get("cat5s").toString());
         binding.cat5.setBackgroundResource((int)getIntent().getExtras().get("cat5d"));

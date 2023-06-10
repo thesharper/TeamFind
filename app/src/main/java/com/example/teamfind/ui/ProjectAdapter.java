@@ -102,23 +102,28 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             itemBinding.date.setText(project.date);
 
             itemBinding.cat1.setText(project.categories[0].name);
-            if(project.categories[0].drawable_id == R.drawable.blue)
+            if(project.categories[0].drawable_id == R.drawable.blue || project.categories[0].drawable_id == R.drawable.violet
+                    || project.categories[0].drawable_id == R.drawable.redd)
                 itemBinding.cat1.setTextColor(Color.WHITE);
             itemBinding.cat1.setBackgroundResource(project.categories[0].drawable_id);
             itemBinding.cat2.setText(project.categories[1].name);
-            if(project.categories[1].drawable_id == R.drawable.blue)
+            if(project.categories[1].drawable_id == R.drawable.blue || project.categories[1].drawable_id == R.drawable.violet
+                    || project.categories[1].drawable_id == R.drawable.redd)
                 itemBinding.cat2.setTextColor(Color.WHITE);
             itemBinding.cat2.setBackgroundResource(project.categories[1].drawable_id);
             itemBinding.cat3.setText(project.categories[2].name);
-            if(project.categories[2].drawable_id == R.drawable.blue)
+            if(project.categories[2].drawable_id == R.drawable.blue || project.categories[2].drawable_id == R.drawable.violet
+                    || project.categories[2].drawable_id == R.drawable.redd)
                 itemBinding.cat3.setTextColor(Color.WHITE);
             itemBinding.cat3.setBackgroundResource(project.categories[2].drawable_id);
             itemBinding.cat4.setText(project.categories[3].name);
-            if(project.categories[3].drawable_id == R.drawable.blue)
+            if(project.categories[3].drawable_id == R.drawable.blue || project.categories[3].drawable_id == R.drawable.violet
+                    || project.categories[3].drawable_id == R.drawable.redd)
                 itemBinding.cat4.setTextColor(Color.WHITE);
             itemBinding.cat4.setBackgroundResource(project.categories[3].drawable_id);
             itemBinding.cat5.setText(project.categories[4].name);
-            if(project.categories[4].drawable_id == R.drawable.blue)
+            if(project.categories[4].drawable_id == R.drawable.blue || project.categories[4].drawable_id == R.drawable.violet
+                    || project.categories[4].drawable_id == R.drawable.redd)
                 itemBinding.cat5.setTextColor(Color.WHITE);
             itemBinding.cat5.setBackgroundResource(project.categories[4].drawable_id);
         }
