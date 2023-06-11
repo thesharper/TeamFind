@@ -84,7 +84,7 @@ public class NewProjectActivity extends AppCompatActivity {
                     account.getString("user_name", "").split(" ")[1], "", account.getString("email", "")));
             project.save();
             Toast.makeText(this, "Проект сохранен", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
         });
     }
     void init(){

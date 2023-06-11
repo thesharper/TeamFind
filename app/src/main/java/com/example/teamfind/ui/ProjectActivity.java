@@ -36,7 +36,9 @@ public class ProjectActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
                     binding.name.setText(getIntent().getExtras().get("name").toString());
                     binding.description.setText(getIntent().getExtras().get("description").toString());
-                    binding.author.setText(getIntent().getExtras().get("author").toString());
+
+                    if(getIntent().getExtras().get("author") != null)
+                        binding.author.setText(getIntent().getExtras().get("author").toString());
                     binding.date.setText(getIntent().getExtras().get("date").toString());
 
                     binding.cat1.setText(getIntent().getExtras().get("cat1s").toString());
@@ -50,67 +52,69 @@ public class ProjectActivity extends AppCompatActivity {
                     binding.cat5.setText(getIntent().getExtras().get("cat5s").toString());
                     binding.cat5.setBackgroundResource((int) getIntent().getExtras().get("cat5d"));
 
-                    if(!(account.getString("first_name", "") + " " + account.getString("second_name", "")).equalsIgnoreCase(getIntent().getExtras().get("author").toString())) {
-                        binding.respond.setOnClickListener(view -> {
-                            if (snapshot.child("Projects").exists()) {
-                                String username;
-                                for (DataSnapshot dp : snapshot.child("Projects").getChildren()) {
-                                    StringProject sp = dp.getValue(StringProject.class);
-                                    if (getIntent().getExtras().get("name").toString().equalsIgnoreCase(sp.name)) {
-                                        username = sp.author;
-                                        Chat c = new Chat(account.getString("email", "no"), username);
-                                        boolean this_chat_exist = false;
+                    if(!account.getString("email", "no").equalsIgnoreCase(getIntent().getExtras().getString("author_id"))) {
+                        if (!(account.getString("first_name", "") + " " + account.getString("second_name", "")).equalsIgnoreCase(getIntent().getExtras().get("author").toString())) {
+                            binding.respond.setOnClickListener(view -> {
+                                if (snapshot.child("Projects").exists()) {
+                                    String username;
+                                    for (DataSnapshot dp : snapshot.child("Projects").getChildren()) {
+                                        StringProject sp = dp.getValue(StringProject.class);
+                                        if (getIntent().getExtras().get("name").toString().equalsIgnoreCase(sp.name)) {
+                                            username = sp.author;
+                                            Chat c = new Chat(account.getString("email", "no"), username);
+                                            boolean this_chat_exist = false;
 
-                                        if (snapshot.child("Chats").exists()) {
-                                            for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
-                                                Chat schat = chat.getValue(Chat.class);
+                                            if (snapshot.child("Chats").exists()) {
+                                                for (DataSnapshot chat : snapshot.child("Chats").getChildren()) {
+                                                    Chat schat = chat.getValue(Chat.class);
 
-                                                if (schat != null) {
-                                                    if (schat.user1 != null && schat.user2 != null) {
-                                                        if ((schat.user1.equalsIgnoreCase(c.user1) || schat.user1.equalsIgnoreCase(c.user2)) &&
-                                                                (schat.user2.equalsIgnoreCase(c.user1) || schat.user2.equalsIgnoreCase(c.user2))) {
-                                                            this_chat_exist = true;
-                                                            c = schat;
-                                                            c.id = chat.getKey();
+                                                    if (schat != null) {
+                                                        if (schat.user1 != null && schat.user2 != null) {
+                                                            if ((schat.user1.equalsIgnoreCase(c.user1) || schat.user1.equalsIgnoreCase(c.user2)) &&
+                                                                    (schat.user2.equalsIgnoreCase(c.user1) || schat.user2.equalsIgnoreCase(c.user2))) {
+                                                                this_chat_exist = true;
+                                                                c = schat;
+                                                                c.id = chat.getKey();
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
 
-                                        String name = "";
-                                        if (snapshot.child("Users").exists()) {
-                                            for (DataSnapshot suser : snapshot.child("Users").getChildren()) {
-                                                User user = suser.getValue(User.class);
-                                                if (user != null) {
-                                                    if (user.email.equalsIgnoreCase(username))
-                                                        name = user.name;
+                                            String name = "";
+                                            if (snapshot.child("Users").exists()) {
+                                                for (DataSnapshot suser : snapshot.child("Users").getChildren()) {
+                                                    User user = suser.getValue(User.class);
+                                                    if (user != null) {
+                                                        if (user.email.equalsIgnoreCase(username))
+                                                            name = user.name;
+                                                    }
                                                 }
                                             }
-                                        }
 
-                                        if (!this_chat_exist) {
-                                            DatabaseReference ref = dbr.child("Chats").push();
-                                            String key = ref.getKey();
-                                            ref.setValue(c);
+                                            if (!this_chat_exist) {
+                                                DatabaseReference ref = dbr.child("Chats").push();
+                                                String key = ref.getKey();
+                                                ref.setValue(c);
 
 
-                                            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                                            intent.putExtra("messages", new Message[]{});
-                                            intent.putExtra("id", key);
-                                            intent.putExtra("username", name);
-                                            startActivity(intent);
-                                        } else {
-                                            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                                            intent.putExtra("messages", c.m.toArray());
-                                            intent.putExtra("id", c.id);
-                                            intent.putExtra("username", name);
-                                            startActivity(intent);
+                                                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                                                intent.putExtra("messages", new Message[]{});
+                                                intent.putExtra("id", key);
+                                                intent.putExtra("username", name);
+                                                startActivity(intent);
+                                            } else {
+                                                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                                                intent.putExtra("messages", c.m.toArray());
+                                                intent.putExtra("id", c.id);
+                                                intent.putExtra("username", name);
+                                                startActivity(intent);
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             }
@@ -140,7 +144,8 @@ public class ProjectActivity extends AppCompatActivity {
 
         binding.name.setText(getIntent().getExtras().get("name").toString());
         binding.description.setText(getIntent().getExtras().get("description").toString());
-        binding.author.setText(getIntent().getExtras().get("author").toString());
+        if(getIntent().getExtras().get("author") != null)
+            binding.author.setText(getIntent().getExtras().get("author").toString());
         binding.date.setText(getIntent().getExtras().get("date").toString());
 
         if((int)getIntent().getExtras().get("cat1d") == R.drawable.blue || (int)getIntent().getExtras().get("cat1d") == R.drawable.violet
