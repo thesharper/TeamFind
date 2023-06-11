@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NewProjectActivity extends AppCompatActivity {
@@ -56,8 +57,12 @@ public class NewProjectActivity extends AppCompatActivity {
                         }
                         binding.selectedLayout.addView(tv);
                         tv.setOnClickListener(view1 -> {
-                            binding.selectedLayout.removeView(tv);
-                            binding.flowLayout.addView(tv);
+                            if (tv.getParent() != null) {
+                                binding.selectedLayout.removeView(tv);
+                                selected_categories.remove(CategoryList.getByName(tv.getText().toString()));
+                                binding.flowLayout.addView(tv);
+                            }
+
                         });
                     } else {
                         Toast.makeText(this, R.string.no_more, Toast.LENGTH_SHORT).show();

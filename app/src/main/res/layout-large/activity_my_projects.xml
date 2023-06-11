@@ -7,13 +7,21 @@
     android:background="#deecfa"
     tools:context=".ui.MyProjectsActivity"
     android:id="@+id/drawer">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/your_projects"
+            android:textSize="48sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="6dp"/>
     <androidx.recyclerview.widget.RecyclerView
 
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/list"
 
@@ -21,7 +29,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,13 +41,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:src="@drawable/search_60"
+            android:src="@drawable/search100"
             android:background="@color/teal_700"
             android:id="@+id/main_page"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/my_projects60"
+            android:src="@drawable/ic_baseline_home_24"
             android:layout_weight="20"
             android:background="@color/teal_700"
             android:id="@+id/my_projects"/>
@@ -48,21 +56,21 @@
             android:layout_height="wrap_content"
             android:background="@color/teal_700"
             android:layout_weight="20"
-            android:src="@drawable/new_project60"
+            android:src="@drawable/new_project100"
             android:id="@+id/new_project"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:background="@color/teal_700"
-            android:src="@drawable/ic_baseline_chat_24"
+            android:src="@drawable/chat_100"
             android:id="@+id/chats"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/teal_700"
             android:layout_weight="20"
-            android:src="@drawable/ic_baseline_exit_to_app_24"
+            android:src="@drawable/exit_100"
             android:id="@+id/exit"/>
 
 

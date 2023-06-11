@@ -27,6 +27,7 @@
     <string name="proj_deleted">Project deleted</string>
     <string name="get_back">Back</string>
     <string name="author">Author: </string>
-    <string name="date">"Date: "</string>
+    <string name="date">Date: </string>
+    <string name="your_projects">Your projects:</string>
 
 </resources>

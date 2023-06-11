@@ -27,6 +27,7 @@
     <string name="no_more">Больше нельзя!</string>
     <string name="proj_deleted">Проект удален</string>
     <string name="author">Автор: </string>
-    <string name="date">"Дата: "</string>
+    <string name="date">Дата: </string>
+    <string name="your_projects">Ваши проекты:</string>
 
 </resources>

@@ -114,8 +114,6 @@ public class ChatsActivity extends AppCompatActivity {
 
     void init(){
 
-        binding.userName.setText(account.getString("first_name", "null") + " " +
-                account.getString("second_name", "null"));
 
 
         binding.exit.setOnClickListener(view -> {
@@ -148,9 +146,6 @@ public class ChatsActivity extends AppCompatActivity {
 
         binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        });
-        binding.opensidebar.setOnClickListener(view -> {
-            binding.drawer.open();
         });
     }
 }

@@ -82,7 +82,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             if(project.author.name != null)
                 author = project.author.name;
             else
-                author = "Неизвестный";
+                itemBinding.getRoot().removeView(itemBinding.author);;
             date = project.date;
             id = project.DBid;
             author_id = project.author_id;
