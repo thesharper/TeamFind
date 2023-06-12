@@ -10,12 +10,12 @@
     <string name="auth">Войти</string>
     <string name="search">Поиск</string>
     <string name="projects">Поиск проектов</string>
-    <string name="my_projects">Мои проекты</string>
-    <string name="new_project">Создать проект</string>
+    <string name="my_projects">Мои идеи</string>
+    <string name="new_project">Новый</string>
     <string name="chats">Чаты</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
-    <string name="exit">Выход из аккаунта</string>
+    <string name="exit">Выход</string>
     <string name="text_new_project">Новый проект</string>
     <string name="project_desc">Описание проекта</string>
     <string name="selected_categories">Выбранные категории:</string>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_page"
+        android:icon="@drawable/search_60"
+        android:title="@string/search"/>
+    <item
+        android:id="@+id/my_projects"
+        android:icon="@drawable/my_projects60"
+        android:title="@string/my_projects" />
+    <item
+        android:id="@+id/new_project"
+        android:icon="@drawable/new_project60"
+        android:title="@string/new_project" />
+    <item
+        android:id="@+id/chats"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="@string/chats"
+        android:checked="true"/>
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/exit"
+        android:checked="true" />
+</menu>

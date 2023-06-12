@@ -89,7 +89,46 @@ public class NewProjectActivity extends AppCompatActivity {
     }
     void init(){
 
-        binding.mainPage.setOnClickListener(view -> {
+
+        assert binding.bottomNavigation != null;
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.main_page:
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            break;
+                        case R.id.my_projects:
+                            startActivity(new Intent(getApplicationContext(), MyProjectsActivity.class));
+                            break;
+
+                        case R.id.new_project:
+                            startActivity(new Intent(getApplicationContext(), NewProjectActivity.class));
+                            break;
+                        case R.id.chats:
+                            startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
+                            break;
+                        case R.id.exit:
+                            new AlertDialog.Builder(this)
+                                    .setMessage("Вы действительно хотите выйти из аккаунта?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            SharedPreferences.Editor editor = account.edit();
+                                            editor.putString("password", "");
+                                            editor.putString("email", "");
+                                            editor.putString("first_name", "");
+                                            editor.putString("second_name", "");
+                                            editor.putBoolean("isAuth", false);
+                                            editor.apply();
+                                            startActivity(new Intent(getApplicationContext(), AuthorizationActivity.class));
+                                        }
+                                    }).setNegativeButton("Нет", null).show();
+                    }
+                    return false;
+                }
+        );
+        binding.bottomNavigation.getMenu().getItem(2).setChecked(true);
+
+        /*binding.mainPage.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         });
 
@@ -123,6 +162,6 @@ public class NewProjectActivity extends AppCompatActivity {
 
         binding.chats.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ChatsActivity.class));
-        });
+        });*/
     }
 }

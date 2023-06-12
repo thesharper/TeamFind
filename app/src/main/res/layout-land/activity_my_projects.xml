@@ -30,51 +30,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
     </LinearLayout>
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:weightSum="100"
-        android:background="@color/teal_700">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:src="@drawable/search_60"
-            android:background="@color/teal_700"
-            android:id="@+id/main_page"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/my_projects60"
-            android:layout_weight="20"
-            android:background="@color/teal_700"
-            android:id="@+id/my_projects"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/teal_700"
-            android:layout_weight="20"
-            android:src="@drawable/new_project60"
-            android:id="@+id/new_project"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:background="@color/teal_700"
-            android:src="@drawable/ic_baseline_chat_24"
-            android:id="@+id/chats"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/teal_700"
-            android:layout_weight="20"
-            android:src="@drawable/ic_baseline_exit_to_app_24"
-            android:id="@+id/exit"/>
-
-
-    </LinearLayout>
+        app:itemBackground="@color/teal_700"
+        app:itemIconTint="@color/bottom_navigation_item_background_colors"
+        app:itemTextColor="@color/bottom_navigation_item_background_colors"
+        app:menu="@menu/menu_bottom_navigation" />
 
 
 </RelativeLayout>
