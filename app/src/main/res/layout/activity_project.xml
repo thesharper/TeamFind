@@ -82,17 +82,21 @@
             android:id="@+id/cat5"
             android:layout_margin="4dp"/>
     </LinearLayout>
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/respond"
         android:id="@+id/respond"
-        android:layout_marginHorizontal="6dp"/>
-    <Button
+        android:layout_marginHorizontal="6dp"
+        app:cornerRadius="10dp"
+        app:rippleColor="@color/black"/>
+    <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_back"
         android:id="@+id/back"
-        android:layout_marginHorizontal="6dp"/>
+        android:layout_marginHorizontal="6dp"
+        app:cornerRadius="10dp"
+        app:rippleColor="@color/teal_800"/>
 
 </LinearLayout>

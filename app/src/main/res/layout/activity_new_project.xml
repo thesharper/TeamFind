@@ -70,13 +70,15 @@
             android:id="@+id/flow_layout"
             app:flMinChildSpacing="6dp">
         </com.nex3z.flowlayout.FlowLayout>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add"
             android:id="@+id/add"
             android:background="@color/teal_700"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            app:cornerRadius="10dp"
+            app:rippleColor="@color/teal_800"/>
 
 
     </LinearLayout>
